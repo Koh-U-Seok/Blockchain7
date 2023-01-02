@@ -1,0 +1,191 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입</title>
+    <!-- <link rel="stylesheet" href="index.css"/> -->
+    <style>
+      div {
+        margin: 10px;
+      }
+      h1 {
+        text-align: center;
+      }
+      h5 {
+        text-align: right;
+      }
+      #div_main {
+        box-sizing: border-box;
+        border: 1px solid black;
+        border-radius: 3% 3% 3% 3%;
+        width: 500px;
+        margin: 0 auto;
+        display: grid;
+        margin-top: 50px;
+      }
+      #div_footer {
+        display: inline;
+        margin: auto;
+        margin-bottom: 20px;
+      }
+      #div_main > #div_header,
+      #div_body {
+        display: grid;
+      }
+      #div_aboutme {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      #phone1 {
+        background-color: #e1e4ee;
+      }
+      #phone1,
+      #phone2,
+      #phone3 {
+        width: 54px;
+      }
+      #man {
+        margin-right: 30px;
+      }
+      #women {
+        margin-right: 20px;
+      }
+      #textarea {
+        resize: none;
+      }
+      #submit {
+        background-color: rgba(129, 230, 215, 1);
+        border-radius: 500px;
+        width: 150px;
+        height: 50px;
+        border: none;
+        font-size: 2rem;
+      }
+      .right_elements {
+        float: right;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="#" method="GET">
+      <div id="div_main">
+        <!-- 회원가입 문구 -->
+        <div id="div_header">
+          <h1>회원가입</h1>
+          <h5>가입 시 더 많은 서비스 이용 가능</h5>
+        </div>
+        <div id="div_body">
+          <div>
+            <label for="id">ID</label>
+            <input type="text" id="id" class="right_elements" autofocus />
+          </div>
+          <div>
+            <label for="pw">PASSWORD</label
+            ><input type="password" id="pw" class="right_elements" />
+          </div>
+
+          <div>
+            <label for="name">이름</label>
+            <input type="text" id="name" class="right_elements" />
+          </div>
+          <div>
+            <label for="email">E-MAIL</label>
+            <input type="email" id="email" class="right_elements" />
+          </div>
+          <div>
+            <label for="phone2">전화번호</label>
+            <span class="right_elements"
+              ><input
+                type="text"
+                name="phone1"
+                id="phone1"
+                value="010"
+                readonly
+              />-<input type="tel" id="phone2" name="phone2" />-<input
+                type="tel"
+                id="phone3"
+                name="phone3"
+              />
+            </span>
+          </div>
+          <div>
+            성별
+            <span class="right_elements">
+              <label for="man">남자</label
+              ><input type="radio" id="man" name="sex" /><label for="women"
+                >여자</label
+              ><input type="radio" id="women" name="sex" />
+            </span>
+          </div>
+          <div>
+            <label for="age">나이</label>
+            <input type="number" id="age" class="right_elements" />
+          </div>
+          <div id="div_hobby">
+            취미
+            <span class="right_elements">
+              <label for="game">게임</label
+              ><input
+                type="checkbox"
+                id="game"
+                name="game"
+                value="game"
+              />&nbsp;&nbsp;<label for="exercise">운동</label
+              ><input
+                type="checkbox"
+                id="exercise"
+                name="exercise"
+                value="exercise"
+              />
+              &nbsp;<label for="reading">독서</label
+              ><input
+                type="checkbox"
+                id="reading"
+                name="reading"
+                value="reading"
+              />
+            </span>
+          </div>
+          <div>
+            <span>거주지</span>
+            <select class="right_elements">
+              <option value="none" selected>선택</option>
+              <option value="seoul">서울</option>
+              <option value="gyeongi">경기도</option>
+              <option value="incheon">인천</option>
+              <option value="gangwon">강원도</option>
+              <option value="ulsan">울산</option>
+              <option value="chungcheongbuk">충청북도</option>
+              <option value="chungcheongnam">충청남도</option>
+              <option value="daejeon">대전</option>
+              <option value="gwangju">광주</option>
+              <option value="jeollabuk">전라북도</option>
+              <option value="Jeollanam">전라남도</option>
+              <option value="daegu">대구</option>
+              <option value="gyeongsangbuk">경상북도</option>
+              <option value="Gyeongsangnam">경상남도</option>
+              <option value="busan">부산</option>
+            </select>
+          </div>
+          <div id="div_aboutme">
+            <span id="aboutme"><label for="textarea">자기소개</label></span>
+            <textarea
+              name="textarea"
+              id="textarea"
+              cols="40"
+              rows="10"
+              placeholder="자신을 소개하세요"
+              class="right_elements"
+            ></textarea>
+          </div>
+        </div>
+        <div id="div_footer">
+          <button type="submit" id="submit">가입</button>
+          <button type="reset" id="reset">초기화</button>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>

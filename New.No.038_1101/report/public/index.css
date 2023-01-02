@@ -1,0 +1,18 @@
+#user-login.on {
+  display: none;
+}
+#user-loggedin {
+  display: none;
+}
+#user-loggedin.on {
+  display: block;
+}
+#userInfo {
+  display: inline;
+}
+#board-list {
+  border: 1px solid black;
+}
+.talkBox {
+  display: flex;
+}

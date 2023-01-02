@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>슬라이드 무한 슬라이드</title>
+    <style></style>
+    <style>
+      body * {
+        height: 50px;
+      }
+      .news_body_2_left_1_top_left span {
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+      }
+      .news_body_2_left_1_top_right span {
+        color: #8ab6ff;
+        padding: 10px;
+      }
+
+      .news_body_2_left_1_bottom {
+        width: 100%;
+        background-color: #eaeaea;
+        padding: 10px;
+      }
+      .news_body_2_left_1_bottom_left,
+      .news_body_2_left_1_bottom_center {
+        white-space: nowrap;
+      }
+      .news_body_2_left_1_bottom_right {
+        display: flex;
+        overflow: hidden;
+        width: 80%;
+      }
+      .stock_market_content {
+        white-space: nowrap;
+        padding-right: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="news_body_2_left_1">
+      <div class="news_body_2_left_1_top flex">
+        <div class="news_body_2_left_1_top_left">
+          <a href="#"><span>조선경제</span></a>
+        </div>
+        <div class="news_body_2_left_1_top_right">
+          <a href="#"><span>조선일보 프리미엄 경제 섹션</span></a>
+        </div>
+      </div>
+      <div class="news_body_2_left_1_bottom flex">
+        <div class="news_body_2_left_1_bottom_left">오늘의 증시</div>
+        <div class="news_body_2_left_1_bottom_center">장 마감</div>
+        <div
+          class="news_body_2_left_1_bottom_right"
+          id="stock_market_container"
+        >
+          <div class="stock_market_content">유로(EUR) 1,392.76 -1.29</div>
+          <div class="stock_market_content">코스피 2,192.07 -40.77</div>
+          <div class="stock_market_content">코스닥 669.50 -28.99</div>
+          <div class="stock_market_content">달러(USD) 1,434.50 +12.00</div>
+          <div class="stock_market_content">엔화(JPY) 985.30 +3.93</div>
+          <div class="stock_market_content">위안(CNY) 199.66 -0.09</div>
+          <div class="stock_market_content">코스피200 284.96 -5.45</div>
+          <div class="stock_market_content">니케이 225 26,401.25</div>
+          <div class="stock_market_content">상해종합 2,979.79</div>
+          <div class="stock_market_content">다우존스 29,202.88</div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function move() {
+        let container = document.getElementById("stock_market_container");
+        let containerLength = container.childElementCount;
+        let currContent = 0;
+        let cnt = 0;
+        console.log(container.firstElementChild.cloneNode(true));
+        roop = setInterval(function () {
+          let dolly = container.children[currContent].cloneNode(true);
+          container.append(dolly);
+
+          [...document.querySelectorAll(".stock_market_content")].forEach(
+            (item) => {
+              item.style.transition = " transform linear 0.5s";
+              item.style.transform = "translateX(-" + cnt * 200 + "px)";
+            }
+          );
+          cnt++;
+          if (currContent > containerLength - 1) currContent = 0;
+          else currContent++;
+          // container.firstElementChild.remove();
+        }, 500);
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+        move();
+      });
+      document.getElementById("stock_market_container").onmouseover = () => {
+        console.log("마우스 올려졌다");
+        [...document.getElementById("stock_market_container").children].forEach(
+          (item) => (item.style.animationPlayState = "paused")
+        );
+      };
+      document.getElementById("stock_market_container").onmouseout = () => {
+        console.log("마우스 떠났다");
+        [...document.getElementById("stock_market_container").children].forEach(
+          (item) => (item.style.animationPlayState = "running")
+        );
+      };
+    </script>
+  </body>
+</html>

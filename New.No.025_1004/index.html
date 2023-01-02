@@ -1,0 +1,71 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution1(n) {
+        let result = [];
+        if (n == 0) return;
+        while (n) {
+          if (n % 2 == 1) {
+            result.unshift("1");
+            n = Math.ceil(n / 2) - 1;
+          } else if (n % 2 == 0) {
+            result.unshift("0");
+            n = Math.ceil(n / 2);
+          }
+        }
+        return result.join("");
+      }
+      //   console.log(solution1(5));
+
+      function solution2(babbling) {
+        let answer = 0;
+        let temp = [];
+        for (let i = 0; i < babbling.length; i++) {
+          temp = babbling[i];
+          console.log(temp);
+          temp = temp.replace(/aya/g, "1");
+          console.log(temp);
+          temp = temp.replace(/ye/g, "2");
+          console.log(temp);
+          temp = temp.replace(/woo/g, "3");
+          console.log(temp);
+          temp = temp.replace(/ma/g, "4");
+          console.log(temp);
+          for (let j = 0; j < temp.length; j++) {
+            if (temp[j] == temp[j + 1]) {
+              console.log(temp[j] + "와" + temp[j + 1] + "은 같다");
+              break;
+            } else {
+              console.log(temp[j] + "와" + temp[j + 1] + "은 다르다");
+              console.log("바꾸기 전 : " + babbling[i]);
+              babbling[i] = babbling[i].replace(/aya/, "");
+              babbling[i] = babbling[i].replace(/ye/, "");
+              babbling[i] = babbling[i].replace(/woo/, "");
+              babbling[i] = babbling[i].replace(/ma/, "");
+              console.log("바꾼 후 : " + babbling[i]);
+              console.log(babbling[i].length);
+              if (babbling[i].length == 0) {
+                answer++;
+                console.log("answer를 증가시켰다");
+                break;
+              }
+            }
+          }
+          console.log("");
+          console.log("");
+          console.log("");
+        }
+        return answer;
+      }
+      console.log(solution2(["aya", "yee", "u"]));
+      console.log("");
+      console.log(solution2(["ayaye", "uuu", "yeye", "yemawoo", "ayaayaa"]));
+    </script>
+  </body>
+</html>

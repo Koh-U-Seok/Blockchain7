@@ -1,0 +1,63 @@
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>calculate</title>
+  </head>
+  <body>
+    <script>
+      let obj1 = {
+        "test code": 1,
+        test_code: 2,
+      };
+      console.log(obj1["test code"]);
+
+      // 형변환 : 자료형을 바꿔준다. ex) string을 number로
+      // 형변환은 나중에 배운다.
+
+      //연산자
+      //이름 그대로 연산(계산)한다.
+      // =, -, *, /, %, *, *, ++, --, -, !, &&, ||, =, +=, -=, *=, /=,  %=,  **=,
+      // ==, ===, !=, !==, >, <, >=, <=
+
+      // + 숫자는 더하고 글자는 붙인다.
+      let plus1 = "자료";
+      let plus2 = "구조";
+      console.log(plus1 + plus2);
+      // 숫자와 글자를 더하면 글자로 취급해서 붙인다.
+      // - 숫자에서 사용한다.
+      // * 숫자에서 사용한다.
+      // - 숫자에서 사용한다.
+      // % 숫자에서 사용한다. 나머지를 구한다. ex) 20%6 은 2가 나온다.
+      // ** 숫자에서 사용한다. 제곱한다. ex) a ** b 는 a의 b제곱
+      // ++, -- 둘 다 카운터용으로 사용한다. 숫자를 하나 늘리거나 줄이거나. ++count하면 먼저 더하고, count++하면 명령을 실행하고 더한다.
+      // -,! 현재 상태를 부정한다. ex) true 는 false.
+      // !! -> 부정의 부정은 참이다. 현재 자료형이 boolean이 아닐 경우 boolean으로 형변환할 때 사용.
+      // = 대입 연산자. ex) a = b  는 a에 b의 값을 넣는다.
+      // += 는 a= a+b와 같다. (-=, *=, /=,  %=,  **= 도 동일.
+
+      const test2 = 1;
+      const test3 = 2;
+      const test4 = 1;
+      const test5 = "1";
+
+      console.log(test2 == test3);
+      console.log(test2 == test4);
+      console.log(test2 == test5);
+      // ==는 a == b a와 b가 같으면 1, 다르면 0을 반환한다.
+      console.log(test2 === test5);
+      //===는 자료형도 확인한다.
+
+      console.log(test2 != test3);
+      console.log(test2 != test4);
+      console.log(test2 != test5);
+
+      console.log(test2 !== test5);
+      // != a와 b가 다르면 1, 같으면 0을 반환한다.
+      // !==는 자료형도 확인한다.
+
+      //>, <, >=, <=는 비교해서 참이면 1, 거짓이면 0을 반환한다.
+    </script>
+  </body>
+</html>

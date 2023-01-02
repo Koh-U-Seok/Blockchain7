@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>슬라이드 무한 슬라이드</title>
+    <style>
+      .news_box {
+        margin: 100px;
+        width: 800px;
+        position: relative;
+        left: 25%;
+        top: 400px;
+        border: 5px blue solid;
+        z-index: 100;
+      }
+      #news_container {
+        display: flex;
+        background: red;
+        width: 1200px;
+        margin: 0;
+        padding: 0;
+      }
+      .news_content {
+        background: green;
+        width: 200px;
+        text-align: center;
+        line-height: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="news_box">
+      <div id="news_container">
+        <div class="news_content">가가가</div>
+        <div class="news_content">나나나</div>
+        <div class="news_content">다다다</div>
+        <div class="news_content">라라라</div>
+        <div class="news_content">마마마</div>
+        <div class="news_content">바바바</div>
+        <div class="news_content">사사사</div>
+        <div class="news_content">아아아</div>
+        <div class="news_content">자자자</div>
+        <div class="news_content">차차차</div>
+        <div class="news_content">카카카</div>
+        <div class="news_content">타타타</div>
+        <div class="news_content">파파파</div>
+        <div class="news_content">하하하</div>
+      </div>
+    </div>
+    <script>
+      let roop = document.getElementById("news_container");
+
+      function move() {
+        let currIndex = 0;
+        setInterval(function () {
+          let dolly1 = roop.firstElementChild.cloneNode(true);
+          roop.append(dolly1);
+          // roop.firstChild.remove();
+          roop.style.transition = "0.5s";
+          // roop.style.transform =
+          //   "translate3d(-" + 200 * (currIndex + 1) + "px, 0px, 0px)";
+          currIndex++;
+          roop.firstElementChild.remove();
+          if (currIndex === 6) {
+            setTimeout(function () {
+              roop.style.transition = "0s";
+              roop.style.transform = "translate3d(0px 0px 0px0";
+            }, 201);
+            currIndex = 0;
+          }
+        }, 1000);
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+        move();
+      });
+    </script>
+  </body>
+</html>

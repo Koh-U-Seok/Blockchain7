@@ -1,0 +1,39 @@
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="cardBoard">
+      <div class="flex justify-content-space-around">
+        <div id="Reset" onclick="reset()">Reset</div>
+        <div id="pointCount" class="pointCount">0</div>
+        <div onclick="cardShuffle()">Shuffle</div>
+      </div>
+      <div class="cardBody grid">
+        <!-- 카드 맞추기 칸 -->
+        <!-- 카드 칸 -->
+        <div class="card" id="card1" onclick="cardSelect(1)">*</div>
+        <div class="card" id="card2" onclick="cardSelect(2)">*</div>
+        <div class="card" id="card3" onclick="cardSelect(3)">*</div>
+        <div class="card" id="card4" onclick="cardSelect(4)">*</div>
+        <div class="card" id="card5" onclick="cardSelect(5)">*</div>
+        <div class="card" id="card6" onclick="cardSelect(6)">*</div>
+        <div class="card" id="card7" onclick="cardSelect(7)">*</div>
+        <div class="card" id="card8" onclick="cardSelect(8)">*</div>
+        <div class="card" id="card9" onclick="cardSelect(9)">*</div>
+        <div class="card" id="card10" onclick="cardSelect(10)">*</div>
+        <div class="card" id="card11" onclick="cardSelect(11)">*</div>
+        <div class="card" id="card12" onclick="cardSelect(12)">*</div>
+        <div class="card" id="card13" onclick="cardSelect(13)">*</div>
+        <div class="card" id="card14" onclick="cardSelect(14)">*</div>
+        <div class="card" id="card15" onclick="cardSelect(15)">*</div>
+        <div class="card" id="card16" onclick="cardSelect(16)">*</div>
+      </div>
+    </div>
+    <script src="index.js" type="text/javascript"></script>
+  </body>
+</html>

@@ -1,0 +1,132 @@
+* {
+  box-sizing: border-box;
+}
+/* -------------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------------- */
+
+#content1 {
+  background-image: url(skyWhale.jpg);
+  overflow: visible;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.btn {
+  background-color: #f15048;
+  border: none;
+  border-radius: 24px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 10px;
+}
+#content2 {
+  margin: 20px auto;
+}
+#teemoText > div {
+  padding-bottom: 10px;
+}
+#content2Img {
+  width: 400px;
+  height: 400px;
+}
+#content3 {
+  margin: 20px auto;
+}
+#yasuoText > div {
+  padding-bottom: 10px;
+}
+#content3Img {
+  width: 400px;
+  height: 400px;
+}
+#content4 {
+  margin: 20px auto;
+}
+#masterYiText > div {
+  padding-bottom: 10px;
+}
+#content4Img {
+  width: 400px;
+  height: 400px;
+}
+/* 데스크탑 */
+@media only screen and (min-width: 1920px) {
+  #content1 {
+    height: 720px;
+  }
+  #content2 {
+    flex-direction: row;
+  }
+  #content3 {
+    flex-direction: row;
+  }
+  #content4 {
+    flex-direction: row;
+  }
+}
+
+/* 노트북 */
+@media only screen and(min-width: 1024px) {
+  #content1 {
+    height: 180px;
+  }
+  #content2 {
+    flex-direction: column;
+    justify-content: end;
+  }
+  #content3 {
+    flex-direction: column;
+    justify-content: end;
+  }
+  #content4 {
+    flex-direction: column;
+    justify-content: end;
+  }
+}
+
+/* 스마트폰 */
+@media only screen and(max-width: 768px) {
+  #content1 {
+    height: 180px;
+  }
+  #content2 {
+    flex-direction: column;
+    justify-content: end;
+  }
+  #content3 {
+    flex-direction: column;
+    justify-content: end;
+  }
+  #content4 {
+    flex-direction: column;
+    justify-content: end;
+  }
+}
+
+/* -------------------------------------------------------------------------------- */
+
+#footer {
+  background-color: #333333;
+  width: 100%;
+}
+
+#footertext {
+  text-align: center;
+}
+
+/* -------------------------------------------------------------------------------- */
+.widthSort {
+  width: 1000px;
+}
+.flex {
+  display: flex;
+}
+
+.flex-direction-column {
+  flex-direction: column;
+}
+
+.justify-content-center {
+  justify-content: center;
+}

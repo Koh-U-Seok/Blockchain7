@@ -1,0 +1,48 @@
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hw</title>
+    <script src="index.js"></script>
+    <style type="text/css">
+      .firstNum {
+        border: 1px solid black;
+        display: flex;
+      }
+      .secondNum {
+        border: 1px solid black;
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="firstNum">
+      <button onclick="firstNumPlus()">firstNum +</button>
+      <!-- 이 버튼을 누르면 firstNum이 1씩 증가한다. -->
+      <button onclick="firstNumMinus()">firstNum -</button>
+      <!-- 이 버튼을 누르면 firstNum이 1씩 감소한다. -->
+      <button onclick="firstNumMul()">firstNum **</button>
+      <!-- 이 버튼을 누르면 firstNum이 제곱된다. -->
+    </div>
+    <div class="secondNum">
+      <button onclick="secondNumPlus()">secondNum +</button>
+      <!-- 이 버튼을 누르면 secondNum이 1씩 증가한다. -->
+      <button onclick="secondNumMinus()">secondNum -</button>
+      <!-- 이 버튼을 누르면 secondNum이 1씩 감소한다. -->
+      <button onclick="secondNumMul()">secondNum **</button>
+      <!-- 이 버튼을 누르면 secondNum이 제곱된다. -->
+    </div>
+    <div class="fs">
+      <button onclick="fsPlus()">result +</button>
+      <!-- 이 버튼을 누르면 firstNum + secondNum이 콘솔창에 출력된다. -->
+      <button onclick="fsMinus()">result -</button>
+      <!-- 이 버튼을 누르면 firstNum - secondNum이 콘솔창에 출력된다. -->
+      <button onclick="fsMul()">result *</button>
+      <!-- 이 버튼을 누르면 firstNum * secondNum이 콘솔창에 출력된다. -->
+      <button onclick="fsDivision()">result /</button>
+      <!-- 이 버튼을 누르면 firstNum / secondNum이 콘솔창에 출력된다. -->
+    </div>
+    <button onclick="examAddFN()"></button>
+  </body>
+</html>

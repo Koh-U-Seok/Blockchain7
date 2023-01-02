@@ -1,0 +1,34 @@
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>todoList</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="todoList">
+      <header id="header">todoList</header>
+      <section id="section">
+        <!-- #btnWrite 클릭 시 #textWrite 내용이 여기에 추가될 것이다...-->
+        <div class="todo" id="todo0">
+          당신의 할 일을 기록하세요!
+          <button class="deleteButton" onclick="deleteButton(0)">X</button>
+        </div>
+      </section>
+      <footer id="footer" class="flex">
+        <textarea
+          name=""
+          id="textWrite"
+          cols="30"
+          rows="3"
+          placeholder="뭐라도 적어서 작성하자..."
+        ></textarea>
+        <div>
+          <button id="btnWrite">작성!</button>
+        </div>
+      </footer>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>

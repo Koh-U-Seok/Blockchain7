@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+div {
+  width: 50px;
+  height: 50px;
+}
+.display {
+  display: block;
+  /* block은 블록, div의 기본값, 자신이 너비를 전부 갖거나 옆에 아무도 없어야 한다 */
+  display: inline;
+  /* inline, span, a 등의 기본값. 옆에 누가 있든 상관없어서 옆에 붙여준다. 자신이 가져야만 하는 영역만 갖는다.(width, height, etc... 무시한다) */
+  display: none;
+  /* 출력을 하지 않는다. 없는 것으로 취급 */
+  display: flex;
+  /* 플렉스 박스의 부모이다. 플렉스 박스라고 한다. */
+  display: grid;
+  /* 그리드 박스의 부모이다. 그리드 박스라고 한다. */
+  display: inherit;
+  /* 부모한테 받는다. 부모의 값을 가져와서 나한테 설정한다. */
+  display: initial;
+  /* 기본값을 설정한다. */
+  display: unset;
+  /* 부모 값을 확인해서 있으면 가져오고 없으면 기본값을 설정한다 */
+  /* 사용량 flex > block > none >>>> gird >>>>>>>>>그외 */
+}
+.wh {
+  width: 100px;
+  height: 100px;
+  width: fit-content;
+  width: min-content;
+  width: max-content;
+  /* 너비를 높이다.
+        단위는 px, $, em, rem, vw, vh를 많이 쓴다.
+        fit-content는 갖고 있는 만큼만 차지한다.
+        min-content는 갖고 있는 최소만 차지한다.
+        max-content는 갖고 있는 최대를 차지한다. 옆에 다른 게 있어도 뚫고 차지한다.
+        */
+}
+.fit-content {
+  width: fit-content;
+}
+.min-content {
+  width: min-content;
+  overflow: hidden;
+  /* hidden는 넘치면 없앤다. */
+  overflow: auto;
+  /* 넘치면 스크롤을 보여준다. */
+  overflow: scroll;
+  /* 무조건 스크롤을 보여준다. */
+  overflow: visible;
+  /* "기본값이다." 그냥 보여준다. */
+}
+.max-content {
+  width: max-content;
+}
+.text {
+  font-size: 16px;
+  /* 글자의 크기, PC 크롬 기준 기본값이 16px
+        기본값이 모바일, pc, 브라우저에 따라 달라질 수 있다.*/
+  font-weight: 500;
+  /* 글시의 굵기다.
+        기본값은 500이고 글꼴을 따라간다. << 글꼴에서 지원하지 않는 굵기느 무시된다. */
+  font-style: normal;
+  color: aqua;
+  /* 글씨의 색
+    rgb(), rgba(), #, hc1,.. 등등으로 설정이 가능하다.
+    red, green, blue, alpha의 약자
+    #은 16진수로 6자리 입력한다. ex)#FFFFFF = rgb(255,255,255)
+    */
+  text-align: center;
+  /* 가운데 정렬 */
+  text-align: end;
+  /* 오른쪽 정렬 */
+  text-align: start;
+  /* 왼쪽 정렬 */
+  text-align: justify;
+  /* 균등 정렬 */
+  text-decoration: overline;
+  /* 텍스트에 줄긋기 
+    overline : 글자 위에 줄긋기
+    line-through : 글자 중간에 줄긋기
+    underline : 글자 아래에 줄긋기
+  */
+  text-decoration: none;
+  /* a 태그 사용 시 밑줄 제거 */
+  letter-spacing: 49px;
+
+  /* 글자 간격 */
+}

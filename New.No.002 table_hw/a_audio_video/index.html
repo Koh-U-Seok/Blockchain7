@@ -1,0 +1,59 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <a href="https://naver.com/">
+      <div>네이버</div>
+      <!-- div를 자식으로 사용하였기에 텍스트 옆으로 벗어나도 a가 적용된다.-->
+    </a>
+    <!-- 
+        a 태그는 링크다.
+        style을 사용하지 않는다.
+        자식에게 style을 설정한다.
+        href는 이동할 주소이다.
+        href는 기본적으로 현재 주소를 기준으로 한다.
+        다른 웹페이지로 이동하고 싶으면 해당 주소를 기입하면 된다.
+    -->
+    <a href="https://youtube.com" target="_blank">유튜브</a
+    ><!--네이버와 달리 div를 사용하지 않았기에 텍스트를 벗어나면 a가 적용이 안된다.-->
+    <!-- target 속성은 웹페이지르 어떻게 이동할 지 결정한다.
+        _blank : 새로운 탭을 만든다.-->
+    <video
+      src="../../haepari.mp4"
+      autoplay
+      muted
+      loop
+      width="500px"
+      height="300px"
+    ></video>
+    <!-- video 태그는 영상을 출력하게 사용한다.
+     src에 주소를 입력한다. << 주소라고 한 이유는 후에 서버 나갈때 다시 설명한다.
+     현재: 파일명을 입력한다(폴더 경로와 파일명을 입력한다.)
+     controls : 영상의 컨트롤 박스를 출력시켜준다.
+     autoplay : 영상이 로드가 완료되면 바로 재상한다. 웹페이지를 들어갔을 때 오디오가 바로 나오면 안되는게 권장사항이다. >> ios가 이것을 정말 집요하게 따져서 자동재생이 안된다.
+     loop : 영상을 반복하여 재생시킨다.
+     muted : 영상을 음소거 시킨다. << ios에서 중요하다. ios에서 자동재생키시려면 muted를 같이 적용시켜야 한다.
+    -->
+    <!--<video src="https://youtu.be/34StX8raXws" controls></video>-->
+    <iframe
+      width="640"
+      height="360"
+      src="https://www.youtube.com/embed/34StX8raXws"
+      title="여우 키우기 상상과 현실ㅣ여우 루비"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+    <!-- title 내부에 "를 사용할 경우 외부에는 '를 써야한다. 그렇지 않으면 컴퓨터는 이 "를 구분하지 못한다.-->
+    <!--Youtube는 비디오를 실행시키려면 소스코드를 복사해서 써야한다. 그 외에는 못쓰게 막아놨다.-->
+    <audio src="../../goldn-116392.mp3" autoplay controls></audio>
+    <!-- audio 태그는 음악을 재생시키는 태그이다. 속성은 video의 것을 가져다 쓰면 된다.
+        태그의 속성은 이름만 넣을 경우 그 값을 true로 처리한다. << true/ false 값을 갖는 속성은 이름만으로 처리가 가능하다.
+        이름만 넣을 수도 있는 속성은 기본값이 false이다.<< 속성을 따로 입력하지 않았을 경우
+    -->
+  </body>
+</html>

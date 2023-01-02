@@ -1,0 +1,41 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>baseball</title>
+    <script src="index.js"></script>
+  </head>
+  <body>
+    <!-- 숫자 야구 게임 
+        컴퓨터가 숫자 3개 고른다.
+        사람이 숫자 3개 고른다.
+      
+        숫자가 같고 위치가 같으면 스트라이크
+        숫자만 같고 위치가 다르면 볼
+        같은 숫자가 없으면 아웃
+        입력해서 몇번만에 3 스트라이크, 즉 숫자를 맞추는지 하는 게임
+        ex) 컴123 => 나321 , 1스트라이크 2볼 2가 스트라이크 났고 1,3이 볼 났다!
+            컴123 => 나456 , 3아웃
+    -->
+  </body>
+</html>
+
+let hanoiNumber; let ringNumber; let departure; let count = 0; // func(); //
+function func() { // hanoiNumber = parseInt(prompt("숫자를 입력하세요.")); //
+console.log((2 ** hanoiNumber) - 1); // } // 하노이의 탑의 최소 이동횟수는 (2의
+n제곱)-1이다. // 처음에는 최소한으로 간략하게 만드는 것에 사고가 고정되어 제법
+고민했다. // n번째의 이동횟수는 n-1의 이동횟수에 2의 n-1제곱을 더한 것이라는
+것에 생각이 닿아 아래와 같이 만들어졌다. func(); function func() { num =
+parseInt(prompt("숫자를 입력하세요.")); console.log(hanoi(num)); } function
+hanoi(hanoiNumber) { if (hanoiNumber == 1) return 1; return hanoi(hanoiNumber -
+1) + 2 ** (hanoiNumber - 1); } // func(); // function func() { // num =
+parseInt(prompt("숫자를 입력하세요.")); // console.log(`입력된 숫자 : ${num}`);
+// console.log(`총 ${hanoi(num)}번 이동하였습니다.`); // } // function
+hanoi(hanoiNumber, departure) { // if (hanoiNumber == 1) { //
+console.log(`${hanoiNumber}를 3번 기둥에`); // console.log(`${++count} 번
+이동하였다.`); // return count; // } // if (hanoiNumber % 2 == 0) { //
+console.log(`${hanoiNumber}번 고리를 ${departure}로`); //
+console.log(`${++count}번 이동하였다.`); // return hanoi(hanoiNumber - 1); // }
+else if (hanoiNumber % 2 == 1) { // console.log(`${hanoiNumber}번 고리를
+${departure}로`); // console.log(`${++count}번 이동하였다.`); // } // }

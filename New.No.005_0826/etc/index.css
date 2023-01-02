@@ -1,0 +1,47 @@
+.etc {
+  background-color: black;
+  color: white;
+  width: 700px;
+  min-height: 100px;
+  font-size: 31px;
+
+  opacity: 50%;
+  /* 투명도 조절 */
+  z-index: 50;
+  /* z축 기준으로 무엇이 앞에 있는지 결정 */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.zi {
+  width: 100px;
+  min-height: 100px;
+  background-color: blue;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+@media only screen and (max-width: 1000px) {
+  /* media query, 이게 뭐냐? 환경에 따라 css를 적용합니다.
+        @media only(이것에만) screen(화면일 때) and (조건){CSS 스타일(문법 적용해서)}
+
+        바로 위에서 적은 것은 "화면일 때만(only screen) 
+        너비가 1000px 까지에서(max-width:1000px) 적용한다.
+        */
+  .etc {
+    width: 700px;
+    opacity: 1;
+  }
+}
+
+@media only screen and(min-width: 500px) {
+  /* 화면일 때만 너비가 500px 이상일 때  */
+  .etc {
+    width: 300px;
+    background-color: lightgray;
+    color: black;
+  }
+}

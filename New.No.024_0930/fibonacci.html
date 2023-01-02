@@ -1,0 +1,30 @@
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function fibonacci(n) {
+        if (n < 2) return n;
+        return fibonacci(n - 2) + fibonacci(n - 1);
+      }
+      let arr = [];
+      for (let i = 0; i < 20; i++) {
+        arr.push(fibonacci(i + 1));
+      }
+      console.log(arr);
+
+      function solution(arr) {
+        let min = Math.min(arr);
+        let newArr = arr.filter((arr) => arr !== min);
+        if (!newArr) newArr.push(-1);
+        return newArr;
+      }
+      console.log(solution([4, 3, 2, 1]));
+      console.log(solution([10]));
+    </script>
+  </body>
+</html>

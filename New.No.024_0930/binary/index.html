@@ -1,0 +1,72 @@
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>binary</title>
+  </head>
+  <body>
+    <script>
+      // 재귀 없이
+      function solution1(n) {
+        let resultArr = [];
+        while (n) {
+          if (n % 2 == 0) {
+            resultArr.unshift("0");
+            n = Math.ceil(n / 2);
+          } else if (n % 2 == 1) {
+            resultArr.unshift("1");
+            n = Math.ceil(n / 2) - 1;
+          }
+        }
+        return resultArr.join("");
+      }
+      // 재귀 함수. 함수 별로 분리된 것
+      function solution2(n) {
+        let resultArr = [];
+        binary(n, resultArr);
+        return resultArr.join("");
+      }
+      function binary(n, resultArr = []) {
+        if (n == 0) return;
+        if (n % 2 == 0) {
+          resultArr.unshift("0");
+          binary(Math.ceil(n / 2), resultArr);
+          return resultArr;
+        } else if (n % 2 == 1) {
+          resultArr.unshift("1");
+          binary(Math.ceil(n / 2) - 1, resultArr);
+          return resultArr;
+        }
+      }
+
+      // 재귀 함수. 함수 안에 함수
+      function solution3(n) {
+        let resultArr = [];
+        function binary(n) {
+          if (n == 0) return;
+          if (n % 2 == 0) {
+            resultArr.unshift("0");
+            binary(Math.ceil(n / 2));
+          } else if (n % 2 == 1) {
+            resultArr.unshift("1");
+            binary(Math.ceil(n / 2) - 1);
+          }
+        }
+        binary(n);
+        return resultArr.join("");
+      }
+      console.log(solution1(4));
+      console.log(solution2(4));
+      console.log(solution3(4));
+
+      console.log(solution1(63));
+      console.log(solution2(63));
+      console.log(solution3(63));
+
+      console.log(solution1(12));
+      console.log(solution2(34));
+      console.log(solution3(56));
+    </script>
+  </body>
+</html>

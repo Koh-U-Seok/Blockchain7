@@ -1,0 +1,28 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 정규표현식
+      function solution2(dartResult) {
+        let answer = [];
+        const SDT = { S: 1, D: 2, T: 3 };
+        dartResult.match(/\d+\S[\*|\#]*/g).forEach((item, idx) => {
+          item = item.match(/\d+|\S|[\*|\#]/g);
+          answer.push(Math.pow(item[0], SDT[item[1]]));
+          if (item[2] === "*") {
+            answer[idx] *= 2;
+            if (answer.length > 1) answer[idx - 1] *= 2;
+          }
+          if (item[2] === "#") answer[idx] *= -1;
+        });
+        return answer.reduce((prev, curr) => prev + curr, 0);
+      }
+      console.log(solution2("1D#3T*10S"));
+    </script>
+  </body>
+</html>

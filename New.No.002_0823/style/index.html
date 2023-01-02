@@ -1,0 +1,126 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>style</title>
+  </head>
+  <style type="text/css">
+    /* 태그들의 스타일 속성을 모아둔다. style 태그 내에서 쓰는 문법(방식)은 css 작성 방식과 같게 사용한다.
+    div, body, h1 등의 태그에 스타일을 한번에 적용할 수 있다.*/
+    div {
+      background-color: aqua;
+      min-height: 10px;
+    }
+    * {
+      /* 모든 태그에 적용한다.
+        *은 여러 곳에서 사용될 수 있으며 css 문법에서는 모든 태그에 설정할 때 사용한다.
+        */
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    #test {
+      /* #은 태그의 id 송성을 찾아 style을 적용한다.*/
+      background-color: lightgray;
+    }
+    p.test {
+      /* .은 태그의 class 송성을 찾아 style을 적용한다.*/
+      background-color: aqua;
+    }
+    .test {
+      background-color: red;
+    }
+    p#test1.test1 {
+      /* 붙여쓴 이름은 하나의 태그에서 찾는다. 하나의 태그에 전부 적용되어야 찾을 수 있다.*/
+      background-color: lightgoldenrodyellow;
+    }
+    .parent {
+      width: 300px;
+      height: 300px;
+      background-color: beige;
+    }
+    .child1,
+    .parent > .child32 {
+      /* , 여러 클래스로 한 번에 적용가능
+            > 바로 아래의 자식만을 찾는다. ( 자식의 자식 등등은 찾지 않는다.)
+        */
+      width: 200px;
+      height: 100px;
+      margin: auto;
+      background-color: lawngreen;
+    }
+    .child2 {
+      width: 100px;
+      /* 
+        width:calc(100% -10px -1rem - 1em);
+        calc(*** - ***)는 단위와 상관없이 계산을 해주아.
+        ex) calc(100% ~10px) => 100%가 100px이면 계산에서 90px으로 설정해준다.
+            100%가 4234px이면 계싼해서 4224px으로 설정해준다.
+      */
+      height: 50px;
+      margin: auto;
+      background-color: lightblue;
+    }
+    .parent .child3 {
+      /* 
+            parent 클래스 태그의 자식 중에서 child1 클래스를 가진 태그를 찾는다.
+            자식을 포함한 증손자, 손자 등등 모든 태그를 찾는다.
+            띄어쓰기는 자식을 찾는다의 의미가 된다.
+            child3으로 수정
+        */
+      background-color: green;
+    }
+    /*
+        style이 적용되는 순서
+
+        태그에 직접 설정된 style 속성. 최우선적으로 적용
+                ^
+        아이디로 설정된 스타일
+                ^
+        클래스로 설정된 스타일
+                ^
+        스타일에서 적용된 태그
+                ^
+        태그의 기본값이 적용된다. 가장 우선도가 낮음
+        ------------------------------------------------
+        css 문법 .test#test
+        * -> 계산식 돌려보기
+        태그와 id, class가 복합적으로 섞여 있을 때 적용한다.
+
+        div,h1, body 등의 태그명 =1
+        .class 등의 클래스면 =2
+        #id 등의 아이디명 =3
+
+        p.test =3, p#test1.test1 =6, .parent > .child2 =4
+        제일 큰게 적용된다.
+        div.test=3 > .test= 2
+    */
+  </style>
+  <body>
+    <div id="test" class="test">div#test.test</div>
+    <div class="test">div.test</div>
+    <p class="test">p.test</p>
+    <p id="test1" class="test1">p#test1.test1</p>
+    <!-- class는 이름 그래도 반이라고 생각하면 편하다
+        여러 태그들에게 공톤된 속성이나 공톤된 태그라면 class 속성을 적용하여 한번에 처리할 수 있다.
+        구조에서 하나의 태그로 묶어서 자식으로 처리해도 되지만 class 로 처리하면 보다 깔끔하게 볼 수 있다.
+        
+        id는 identity의 약자로 하나만 설정 가능한 이름이다. 태그끼리 중복이 불가능 하다.
+        html 상에서는 중복 체크를 안하지마 javascript를 쓸 때는 중복되면 안되니 주의해야 한다. 만약 중복되게 쓰고 싶다면 class를 쓰자.
+    -->
+    <div style="background-color: red; min-height: 10px"></div>
+    <div style="background-color: red; min-height: 10px"></div>
+    <div class="parent">
+      <div class="child1">
+        <div class="child2"></div>
+      </div>
+      <div class="child1">
+        <div class="child2 child3">.child2.child3</div>
+      </div>
+      <div class="child2">
+        <div class="child2">.child2</div>
+      </div>
+    </div>
+  </body>
+</html>

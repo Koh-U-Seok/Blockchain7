@@ -1,0 +1,25 @@
+.background {
+  width: 200px;
+  height: 200px;
+
+  background-color: aqua;
+  /* 배경 색  */
+  background-image: url(https://w.namu.la/s/c2c97e68b60a0c0f54ce629d86f06d1632c92783d5f4ef9784de7e85eb59ba7e40c7bcafd6b176bf37f00535e4af3d6238980796773a8b851b8d9a920cd6a54cc1b551c682b032e6edcce875f3f7f5ea80f89947c5b0e49aa630e4fab970e0ab);
+  /* 배경에 이미지 */
+  background-size: contain;
+  /* 이미지가 잘리지 않는 선에서 가장 크게. 배경이 다 나오지만 공백이 있다.*/
+  background-size: cover;
+  /* 이미지가 잘리더라도 여백없이 부모의 크기를 다 채운다. 공백이 없지만 배경 이미지가 잘린다.*/
+  background-size: 100px 100px;
+  /* 배경의 크기를 지정 */
+  background-position: 10px 10px;
+  /* 배경 이미지 위치. 왼쪽 상단을 기준으로 x만큼 오른쪽으로, y만큼 아래로  */
+  background-position: center;
+  /* 배경이 중앙으로 위치시킨다. */
+  background-repeat: no-repeat;
+  /* 배경이 반복해서 출력되지 않는다. */
+  background-repeat: repeat-x;
+  /* 배경이 x축으로 반복되어서 출력된다. */
+  background-repeat: repeat-y;
+  /* 배경이 y축으로 반복되어서 출력된다. */
+}

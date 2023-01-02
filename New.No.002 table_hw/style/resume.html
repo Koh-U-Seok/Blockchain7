@@ -1,0 +1,341 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style type="text/css">
+    html,
+    body {
+      cursor: url("../../clock.cur"), auto;
+    }
+    #main_div {
+      background-color: white;
+      width: 800px;
+      margin: 0 auto;
+      padding-right: 20px;
+      padding-bottom: 5px;
+    }
+    .tbbg {
+      background-color: beige;
+    }
+    td,
+    th {
+      border: 1px solid black;
+      height: 28px;
+    }
+    table {
+      border-left: hidden;
+      border-right: hidden;
+      border-collapse: collapse;
+      width: 100%;
+      border-top: 3px solid black;
+      border-bottom: 3px solid black;
+    }
+    #first tr td,
+    th {
+      height: 32px;
+    }
+    #first {
+    }
+    .div_setting {
+      margin: 10px;
+      width: 100%;
+    }
+    #poo {
+      margin: 0;
+      border: 1px solid black;
+    }
+    col {
+      width: 25%;
+    }
+    #signature {
+      margin: 10px;
+      width: 100%;
+      text-align: right;
+    }
+    .title {
+      border-top: 3px solid black;
+      border-bottom: 3px solid black;
+      text-align: left;
+    }
+    .center {
+      text-align: center;
+    }
+    body {
+      background-color: green;
+    }
+  </style>
+  <body>
+    <div id="main_div">
+      <div style="text-align: center">
+        <h1>이 력 서</h1>
+      </div>
+      <div class="div_setting" style="display: grid">
+        <div style="height: 15%">
+          <div style="float: left; width: 20%; padding-right: -5000">
+            <img src="../../poo.png" alt="사진이 어디갔니" id="poo" />
+          </div>
+          <div style="float: left; width: 80%">
+            <!--1번 표-->
+            <table id="first">
+              <tr>
+                <th class="tbbg">성 명</th>
+                <td>고우석</td>
+                <th class="tbbg">영 문</th>
+                <td class="center">Koh U Seok</td>
+                <th class="tbbg">한문</th>
+                <td class="center">고우석</td>
+              </tr>
+              <tr>
+                <th class="tbbg">생년월일</th>
+                <td colspan="3">1999년 11월 12일</td>
+                <th class="tbbg">나이(만)</th>
+                <td class="center">22세</td>
+              </tr>
+              <tr>
+                <th class="tbbg">휴대폰</th>
+                <td>010-9136-5704</td>
+                <th class="tbbg">전화번호</th>
+                <td colspan="3">02-578-5704</td>
+              </tr>
+              <tr>
+                <th class="tbbg">이메일</th>
+                <td colspan="5">kosh1668@naver.com</td>
+              </tr>
+              <tr>
+                <th class="tbbg">주소</th>
+                <td colspan="5">서울특별시 강남구 광평로3길5 202호</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="div_setting">
+        <!--2번 표-->
+        <table>
+          <col />
+          <col />
+          <col />
+          <col />
+          <tr>
+            <th class="tbbg">보훈대상자</th>
+            <td class="center">
+              해당 <input type="radio" name="bohun" value="yes" />&nbsp;
+              해당없음 <input type="radio" name="bohun" value="no" checked />
+            </td>
+            <th class="tbbg">장애 여부</th>
+            <td class="center">
+              해당
+              <input type="radio" name="obstacle" value="yes" checked />
+              해당없음 <input type="radio" name="obstacle" value="no" checked />
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="div_setting">
+        <!--3번 표-->
+        <table>
+          <thead>
+            <tr>
+              <th colspan="5" class="tbbg title">학력사항</th>
+            </tr>
+          </thead>
+          <tbody style="text-align: center">
+            <tr>
+              <th>재학기간</th>
+              <th>학교명 및 전공</th>
+              <th>학점</th>
+              <th>구분</th>
+              <th>소재지</th>
+            </tr>
+
+            <tr>
+              <td>2018.03 ~ 2022.02</td>
+              <td>인하공업전문대학 정보통신과</td>
+              <td>4.04/4.5</td>
+              <td>주간</td>
+              <td>인천</td>
+            </tr>
+            <tr>
+              <td>2015.03 ~ 2018.02</td>
+              <td>대진디자인고등학교</td>
+              <td></td>
+              <td>특성화</td>
+              <td>서울</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="div_setting">
+        <!--4번 표-->
+        <table>
+          <thead>
+            <tr>
+              <th colspan="4" class="tbbg title">자격증</th>
+            </tr>
+          </thead>
+          <tbody style="text-align: center">
+            <tr>
+              <th>취득일</th>
+              <th>자격증/면허증</th>
+              <th>등급</th>
+              <th>발행처</th>
+            </tr>
+
+            <tr>
+              <td>2018.02</td>
+              <td>운전면허증</td>
+              <td>2종 보통</td>
+              <td>도로교통공단</td>
+            </tr>
+            <tr>
+              <td>2021.10</td>
+              <td>네트워크관리사</td>
+              <td>2급</td>
+              <td>한국정보통신자격협회</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="div_setting">
+        <!--5번 표-->
+        <table>
+          <thead>
+            <tr>
+              <th colspan="4" class="tbbg title">주요 활동 및 경력</th>
+            </tr>
+          </thead>
+          <tbody style="text-align: center">
+            <tr>
+              <th>기간</th>
+              <th>활동내용</th>
+              <th>활동구분</th>
+              <th>기관명/업체명</th>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="div_setting">
+        <!--6번 표-->
+        <table>
+          <thead>
+            <tr>
+              <th colspan="6" class="tbbg title">능력사항</th>
+            </tr>
+          </thead>
+          <tbody style="text-align: center">
+            <tr>
+              <th rowspan="3">OA 능력</th>
+              <th>워드 한글</th>
+              <th>OA 능력</th>
+              <th rowspan="3">어학 능력</th>
+              <th>영어</th>
+              <th>
+                상 <input type="radio" name="english" value="1" /> / 중
+                <input type="radio" name="english" value="2" /> / 하<input
+                  type="radio"
+                  name="english"
+                  value="3"
+                />
+              </th>
+            </tr>
+
+            <tr>
+              <td>엑셀</td>
+              <td>
+                상 <input type="radio" name="excel" value="1" /> / 중
+                <input type="radio" name="excel" value="2" /> / 하<input
+                  type="radio"
+                  name="excel"
+                  value="3"
+                />
+              </td>
+              <td>일본어</td>
+              <td>
+                상 <input type="radio" name="japanese" value="1" /> / 중
+                <input type="radio" name="japanese" value="2" /> / 하<input
+                  type="radio"
+                  name="japanese"
+                  value="3"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>파워포인트</td>
+              <td>
+                상 <input type="radio" name="powerpoint" value="1" /> / 중
+                <input type="radio" name="powerpoint" value="2" /> / 하<input
+                  type="radio"
+                  name="powerpoint"
+                  value="3"
+                />
+              </td>
+              <td>기타( )</td>
+              <td>
+                상 <input type="radio" name="etc" value="1" /> / 중
+                <input type="radio" name="etc" value="2" /> / 하<input
+                  type="radio"
+                  name="etc"
+                  value="3"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="div_setting">
+        <!--7번 표-->
+        <table>
+          <thead>
+            <tr>
+              <th colspan="5" class="tbbg title">병역사항</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>복무기간</th>
+              <th>군별</th>
+              <th>계급</th>
+              <th>병과</th>
+              <th>전역사유</th>
+            </tr>
+            <tr style="text-align: center">
+              <td>2019.03~ 2020.10</td>
+              <td>육군</td>
+              <td>병장</td>
+              <td>조리</td>
+              <td>만기제대</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="signature">
+        위에 기재한 사항은 사실과 틀림이 없습니다.<br />
+        <h4>
+          2022년 8월 22일<br />
+          성 명 : 고 우 석 (인)<br />
+        </h4>
+      </div>
+    </div>
+  </body>
+</html>

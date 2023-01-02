@@ -1,0 +1,178 @@
+.grid {
+  display: grid;
+  /* grid 박스를 넣는다.(부모 역할) */
+
+  /* grid-template-rows: 200px 200px; */
+  /* grid박스에 세로 높이를 결정한다. */
+  /* rows(행)의 수만큼 입력한다. */
+
+  /* grid-template-columns: 100px 100px 100px; */
+  /* gird박스의 가로 너비를 결정한다. */
+  /* column(열)의 수 만큼 입력한다. */
+
+  /* 자로 줄을 그은 것과 비슷하다. */
+
+  /* grid-template-rows: repeat(2, 200px);
+  grid-template-columns: repeat(3, 100px); */
+  /* repeat 함수는 입력을 n번 만큼 반복해준다. repeat(개수,크기) */
+
+  grid-template-rows: repeat(3, 200px);
+  grid-template-columns: repeat(5, minmax(100px, 300px));
+  /* minmax()함수는 최소, 최대 크기를 정해준다. 그 사이에선 알아서 조절된다. */
+
+  row-gap: 10px;
+  /* 세로 간격 */
+
+  column-gap: 20px;
+  /* 가로간격 */
+
+  /* grid-auto-flow: column;*/
+  /* grid의 아이템의 진행 방향을 설정한다. */
+
+  grid-template-areas:
+    "sidebar header header header header"
+    "sidebar content content content ."
+    "footer footer footer footer footer";
+  /* grid-template-area는 grid 박스에 설정한다.
+        하나의 row는 ""로 설정하고, 여러 row는 줄바꿈으로 처리한다.
+        .으로 처리할 경우 빈칸이 된다.
+        무조건 직사각형이어야 한다.
+        item의 스타일에 grid-area와 매칭한다.
+    */
+  /* align-items: stretch; 기본값 
+    align-items: start;
+    align-items: center;
+    align-items: end;
+    세로기준으로 위치를 결정
+
+    justify-items: stretch; 기본값
+    justify-items: start;
+    justify-items: center;
+    justify-items: end;
+     가로 기준을 위치를 결정 */
+}
+.grid-item {
+  background-color: #efff00;
+  border: 1px solid black;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  /* grid-area는 부모 gird 박스의 grid-template-area와 매칭한다. */
+  background-color: antiquewhite;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.header {
+  grid-area: header;
+  background-color: aqua;
+}
+.content {
+  grid-area: content;
+  background-color: violet;
+}
+.footer {
+  grid-area: footer;
+  background-color: green;
+}
+
+.sidebar > div {
+  /* height: 20px; */
+  color: red;
+  /* margin-bottom: 10px; */
+  padding: 5px;
+}
+.sidebar > div:last-child {
+  margin-bottom: 0;
+}
+
+.mosaic {
+  display: grid;
+  /* grid 박스 설정 */
+
+  /* 기본적으로보여질 형식 설정 */
+  grid-template-columns: repeat(3, 66px);
+  grid-template-rows: repeat(3, 66px);
+  /* 100px의 정사각형을 4개를 2줄로 출력 */
+}
+
+.mosaic > div {
+  /* grid 박스의 아이템을 눈에 보여주기 위해 설정 */
+  background-color: antiquewhite;
+  border: 1px solid black;
+}
+
+.mosaic-item {
+  display: none;
+  /* 기본적으로 보여지면 안될 아이템을 display:none을 사용해 보이지 않도록 설정 */
+}
+
+/* 마우스 오버를 감지하기 위해(마우스가 해당 영역 위에 있는지 확인하기 위해) hover 가상 클래스(의사 클래스)를 사용한다. */
+.mosaic:hover {
+  /* mosaic클래스 위에 마우스가 올라가 있으면 해당 스타일을 적용한다. */
+  grid-template-columns: repeat(3, 66px);
+  grid-template-rows: repeat(3, 66px);
+  /* 50px의 정사각형을 16개를 4줄로 출력*/
+}
+
+.mosaic:hover .mosaic-item {
+  /* mosaic 클래스 위에 마우스가 있을 때 자식 중 mosaic-item 클래스를 가진 영역에 스타일을 적용한다. */
+  display: block;
+  /* display: block 사용해 눈에 보이도록 설정한다.  */
+}
+
+.ggggg {
+  display: grid;
+  grid-template-rows: repeat(5, 200px);
+  grid-template-columns: repeat(5, minmax(100px, 300px));
+  border: 1px solid black;
+  row-gap: 20px;
+  column-gap: 20px;
+
+  grid-template-areas:
+    "golbaengi1 golbaengi1 golbaengi11 golbaengi1 golbaengi1"
+    "golbaengi2 golbaengi5 golbaengi5 golbaengi5 golbaengi4"
+    "golbaengi2 golbaengi6 golbaengi8 golbaengi8 golbaengi4"
+    "golbaengi2 golbaengi6 golbaengi7 golbaengi7 golbaengi4"
+    "golbaengi2 golbaengi3 golbaengi3 golbaengi3 golbaengi3";
+}
+
+.g1 {
+  grid-area: golbaengi1;
+  background-color: red;
+}
+
+.g2 {
+  grid-area: golbaengi2;
+  background-color: orange;
+}
+
+.g3 {
+  grid-area: golbaengi3;
+  background-color: yellow;
+}
+
+.golbaengi4 {
+  grid-area: golbaengi4;
+  background-color: green;
+}
+
+.golbaengi5 {
+  grid-area: golbaengi5;
+  background-color: blue;
+}
+
+.golbaengi6 {
+  grid-area: golbaengi6;
+  background-color: indigo;
+}
+
+.golbaengi7 {
+  grid-area: golbaengi7;
+  background-color: purple;
+}
+.golbaengi8 {
+  grid-area: golbaengi8;
+  background-color: black;
+}

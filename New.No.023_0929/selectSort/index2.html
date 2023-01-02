@@ -1,0 +1,29 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        let result = [];
+        while (n) {
+          if (n % 3 == 1) {
+            result.unshift("1");
+            n = parseInt(n / 3);
+          } else if (n % 3 == 2) {
+            result.unshift("2");
+            n = parseInt(n / 3);
+          } else if (n % 3 == 0) {
+            result.unshift("4");
+            n = parseInt(n / 3) - 1;
+          }
+        }
+        return result;
+      }
+      console.log(solution(6));
+    </script>
+  </body>
+</html>

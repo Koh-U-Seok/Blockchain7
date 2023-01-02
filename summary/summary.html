@@ -1,0 +1,101 @@
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>지난 주에 했던 것</title>
+  </head>
+  <style type="text/css">
+    /* 태그들의 스타일 속성을 모아둔다. style 태그 내에서 쓰는 문법(방식)은 css 작성 방식과 같게 사용한다.
+    div, body, h1 등의 태그에 스타일을 한번에 적용할 수 있다.*/
+    /* #은 태그의 id 송성을 찾아 style을 적용한다.*/
+    /* .은 태그의 class 송성을 찾아 style을 적용한다.*/
+    /* 붙여쓴 이름은 하나의 태그에서 찾는다. 하나의 태그에 전부 적용되어야 찾을 수 있다. ex)p#test1.test1 */
+    /* 여러 클래스로 한 번에 적용가능 > :  바로 아래의 자식만을 찾는다. ( 자식의 자식 등등은 찾지 않는다.) ex).parent > .child32  */
+    /*  calc(*** - ***)는 단위와 상관없이 계산을 해준다.
+        ex) calc(100% ~10px) => 100%가 100px이면 계산에서 90px으로 설정해준다.
+            100%가 4234px이면 계싼해서 4224px으로 설정해준다.*/
+    /* parent 클래스 태그의 자식 중에서 child1 클래스를 가진 태그를 찾는다.
+            자식을 포함한 증손자, 손자 등등 모든 태그를 찾는다.
+            띄어쓰기는 자식을 찾는다의 의미가 된다.
+            child3으로 수정
+        */
+  </style>
+  <body>
+    <!--설치 직후 해야 할 것-->
+    비쥬얼 코드 설치 후 좌측에 도구에서 Live Server, Perttier- Code formatter
+    설치 설정에서 default 검색 후 default formatter 를 Prettier- Code
+    formatter로 설정<br />
+    설정에서 Format on save 검색 후 체크 alt + L + O로 빠르게 웹 페이지로 코드를
+    실행가능 태그 : html, head, meta, div 등, 여는 태그와 닫는 태그로 사용
+    <br />
+    html 파일은 웹페이지를 출력하기 위해 사용 파일 자체를 그냥 열어야 됌
+    <hr />
+    <div>가장 기본적인 영역. 많이 쓰인다.</div>
+    <p>블록화된 텍스트. 줄바꿈됌</p>
+    <span>인라인 형식의 텍스트</span>
+    <br />
+    줄바꿈
+    <pre>입력한 그대로 출력하는 텍스트</pre>
+    <h1>h1~h6 제목 태그</h1>
+    <img
+      src="이미지의 주소 입력"
+      alt="이미지가 없을 때 출력 되는 텍스트 입력"
+    />
+    이미지 태그
+    <div style="display: block">
+      속성(attribute) : style, src, alt, name 같은 것들 <br />
+      속성은 태그를 설정 <br />
+      속성을 설정할 떄는 속성명="". 속성명 ='' <br />
+      style 속성의 경우 css 문법에 맞춰 작성한다.
+    </div>
+    <div
+      style="
+        width: 100%;
+        height: auto;
+        background-color: aquamarine;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      "
+    >
+      style 속성 = CSS<br />
+      width : 너비, max-width, min-width<br />
+      height: 높이 , max-height, min-height<br />
+      background-color : 배경색 , 색상 자체를 입력할 수 있고, rgb(***,***,***)
+      형식으로 가능(***는 0~255)<br />
+      padding(내부 여백), margin(외부 여백) : ***-top, ***-right,***-bottom ,
+      ***-left 형식으로 하나씩 설정 가능<br />
+      box-sizing : 박스의 크기를 어떻게 설정할 지 기준을 설정<br />
+    </div>
+    <div style="display: inline">
+      display : 영역의 노출 크기를 어떻게 설정할 지 기준을 설정한다. block은
+      부모르 기준으로 모든 너비를 차지한다, 높이는 자식을 기준으로 한다. 부모란
+      상위 태그이다. <br />
+      부모 예시 : <br />
+      <div>
+        부모
+        <div>자식</div>
+      </div>
+      inline은 자식의 내용 만큼만 차지한다.<br />
+      욕심이 없다. 자식의 내용이 없으면 너비 : 0, 높이 : 0, 옆에 다른 영역이
+      들어올 수 있다.<br />
+      <br />
+      display 설정 값 : flex, grid, ...
+    </div>
+    <div sytle="float:left">
+      float는 정렬이다 <br />
+      다른 영역과 겹칠 수 있다.
+    </div>
+    <div>
+      <ol>
+        <li>순서 있는 리스트</li>
+        <li>공통적으로 리스트의 목록 내용</li>
+      </ol>
+      <ul>
+        <li>순서가 없는 리스트</li>
+        <li></li>
+      </ul>
+    </div>
+  </body>
+</html>

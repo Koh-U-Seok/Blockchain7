@@ -1,0 +1,43 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hanoi</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, start = 1, mid = 2, end = 3) {
+        if (n === 1) return [[`n : ${n}`, start, end]];
+        return [
+          ...solution(n - 1, start, end, mid),
+          [`n : ${n}`, start, end],
+          ...solution(n - 1, mid, start, end),
+        ];
+      }
+      //   console.log(solution(3));
+      function solution2(n, start = 1, end = 3, cnt = 1) {
+        if (n === 1) return [[`n : ${n}`, start, end, `cnt : ${cnt}`]];
+        return [
+          ...solution(n - 1, start, 6 - start - end, cnt++),
+          [`n : ${n}`, start, end, `cnt : ${cnt}`],
+          ...solution(n - 1, 6 - start - end, end, cnt++),
+        ];
+      }
+
+      //   console.log(solution2(4));
+
+      let board = [
+        [0, 0, 0, 0, 0],
+        [0, 0, 1, 0, 3],
+        [0, 2, 5, 0, 1],
+        [4, 2, 4, 4, 2],
+        [3, 5, 1, 3, 1],
+      ];
+      console.log(board);
+      console.log(board[0][0]);
+      console.log(board[1][1]);
+      console.log(board[4][4]);
+    </script>
+  </body>
+</html>
