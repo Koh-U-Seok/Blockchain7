@@ -4,13 +4,14 @@
   "description": "",
   "main": "hash.js",
   "scripts": {
-    "test": "jest merkle.test.js"
+    "test": "jest block.test.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "crypto-js": "^4.1.1",
+    "hex-to-binary": "^1.0.1",
     "merkle": "^0.6.0"
   },
   "devDependencies": {
