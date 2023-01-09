@@ -167,7 +167,6 @@ MySQL
                 // autoIncrement: true, // index 값 자동 증가
                 // unique: true, // 값이 중복되면 안된다.
                 // allowNull: false, // 비면 안된다.
-                // defaultValue:Sequelize.NOW
                 },
             },
             {
