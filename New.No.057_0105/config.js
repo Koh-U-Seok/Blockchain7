@@ -23,7 +23,7 @@ const DIFFICULTY_ADJUSTMENT_INTERVAL = 10;
 
 // 난이도 조절에 있어서 단위 개수, 난이도르 변경하기 위한 기준
 // 0 ~ 9, 10 ~ 19, 20 ~ 29... 높이가 이것과 비교해서 난이도가 결정될 것이다.
-const BLOCK_GEMRATION_INTERVAL = 10;
+const BLOCK_GENERATION_INTERVAL = 10;
 
 // 블록 하나당 걸리는 시간
 const TIME_UNIT = 60 * 1000;
@@ -41,7 +41,7 @@ module.exports = {
   },
   constant: {
     DIFFICULTY_ADJUSTMENT_INTERVAL,
-    BLOCK_GEMRATION_INTERVAL,
+    BLOCK_GENERATION_INTERVAL,
     TIME_UNIT,
   },
 };

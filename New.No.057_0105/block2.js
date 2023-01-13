@@ -4,7 +4,7 @@ const IBlock = require("../New.No.057_0105/block.interface.js");
 const {
   lib: { merkle, SHA256, hexToBinary },
   constant: {
-    BLOCK_GEMRATION_INTERVAL,
+    BLOCK_GENERATION_INTERVAL,
     DIFFICULTY_ADJUSTMENT_INTERVAL,
     TIME_UNIT,
   },
@@ -137,7 +137,7 @@ class Block extends IBlock {
     // 블록 생성 기준시간 10분에 블록 하나 생성
     // 10개 만들면 100분
     const timeExpected =
-      TIME_UNIT * BLOCK_GEMRATION_INTERVAL * DIFFICULTY_ADJUSTMENT_INTERVAL;
+      TIME_UNIT * BLOCK_GENERATION_INTERVAL * DIFFICULTY_ADJUSTMENT_INTERVAL;
 
     // 난이도 증가
     if (timeTaken < timeExpected * 0.5) return adjustmentDifficulty + 1;

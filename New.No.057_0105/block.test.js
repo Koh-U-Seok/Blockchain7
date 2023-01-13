@@ -26,7 +26,7 @@ const {
   lib: { hexToBinary },
   constant: {
     DIFFICULTY_ADJUSTMENT_INTERVAL,
-    BLOCK_GEMRATION_INTERVAL,
+    BLOCK_GENERATION_INTERVAL,
     TIME_UNIT,
   },
 } = require("./config");
