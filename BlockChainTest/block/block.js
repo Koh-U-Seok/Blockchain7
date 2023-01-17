@@ -30,6 +30,9 @@ class BlockHeader {
 
       this.merkleRoot = "";
       // 머클루트를 제거한다. 머클 루트는 64자리로 되있어야 하는데 0자리가 되었으니 이후의 코드에서도 문제가 생기고 블록이 만들어지지 않게 될 것이다.
+
+      console.error(merkleRoot.msg);
+      // 에러가 발생했으니 출력한다.
     } else {
       // createMerkleRoot의 반환값에 에러가 없을 경우. 머클루트가 정상적으로 만들어 졌을 경우다.
 
@@ -223,6 +226,16 @@ class Block extends BlockHeader {
       tempStr += _block[keys[i]];
       // 해시와 트랜잭션을 제외한 키들을 하나로 더한다.
     }
+    // tempStr += _block.version;
+    // tempStr += _block.merkleRoot;
+    // tempStr += _block.timestamp;
+    // tempStr += _block.height;
+    // tempStr += _block.difficulty;
+    // tempStr += _block.nonce;
+    // tempStr += _block.previousHash;
+
+    // for문은 위의 내용을 한 것이다.
+
     return SHA256(tempStr).toString().toUpperCase();
     // 해시를 만든다. sha256으로 암호화한 것을 문자화한다.
     // sha256으로 암호화하면 소문자로 되어있기에 대문자로 바꿔주었다.

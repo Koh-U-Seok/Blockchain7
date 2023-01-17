@@ -86,13 +86,6 @@ class Chain {
       //   - 제네시스 블록의 다음 블록의 다음 블록의 인덱스는? 2
       //   - 마지막 블록의 인덱스는 2 < 길이가 3일 때 2을 구해야한다.
     }
-    this.getDifficulty({
-      previousDifficulty: _previousBlock.difficulty,
-      adjustmentDifficulty: _adjustmentBlock.difficulty,
-      adjustmentTimestamp: _adjustmentBlock.timestamp,
-      DAI: _config.DAI,
-      averageGenerationTime: _config.averageGenerationTime,
-    });
 
     // const isValid = Block.isValidBlock(newBlock, this.lastBlock);
     // if (isValid.isError) {
@@ -117,12 +110,12 @@ class Chain {
   }
 }
 
-// const chain = new Chain();
+const chain = new Chain();
 
-// // 테스트용 블록 32개 추가
-// for (let i = 0; i < 200; i++) {
-//   chain.addBlock([`test block ${i}`]);
-// }
+// 테스트용 블록 32개 추가
+for (let i = 0; i < 200; i++) {
+  chain.addBlock([`test block ${i}`]);
+}
 
 // console.log(chain.chain);
 
