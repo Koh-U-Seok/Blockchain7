@@ -113,10 +113,10 @@ class Chain {
 const chain = new Chain();
 
 // 테스트용 블록 32개 추가
-for (let i = 0; i < 200; i++) {
+for (let i = 0; i < 10; i++) {
   chain.addBlock([`test block ${i}`]);
 }
-
+console.log(typeof chain.chain[0]);
 // console.log(chain.chain);
 
 module.exports = Chain;

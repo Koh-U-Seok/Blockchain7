@@ -143,7 +143,7 @@ class Block extends BlockHeader {
 
     this.data = _data;
     // 1-9
-    console.log(this);
+    // console.log(this);
   }
 
   static createHash(_block) {
@@ -216,8 +216,8 @@ class Block extends BlockHeader {
       // 2진수로 바꾸어 while의 조건문(문제 조건)에 해당하지 않는지 확인한다.
       //   - while의 조건문이 부정이기 때문에 해당하지 않으면 문제 해결이다.
     }
-    console.log(hashBinary);
-    console.log(hashBinary.slice(0, this.difficulty));
+    // console.log(hashBinary);
+    // console.log(hashBinary.slice(0, this.difficulty));
   }
 
   static isValidBlock(_newBlock, _previousBlock) {
