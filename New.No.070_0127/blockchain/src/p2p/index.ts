@@ -63,14 +63,15 @@ class P2P extends Chain {
       // 변환되어 만들어진 객체는 IMessage의 형태로 data에 넣어진다.
 
       switch (data.type) {
-        // 어떤 요청이 왔는가 type으로 확인해서
+        // 어떤 요청이 왔는가 data의 type을 확인한다.
         case MessageType.lastBlock: {
-          // 마지막 블록을 달라고 했으니
+          // 마지막 블록을 달라고 했을 경우
           const message: IMessage = {
             type: MessageType.allBlock,
             payload: [this.lastBlock],
-            // 마지막 블록을 payload에 담아서
+            // 마지막 블록을 배열에 담아 payload 키의 값으로 넣는다.
           };
+
           socket.send(JSON.stringify(message));
           // 보낸다.
           break;
