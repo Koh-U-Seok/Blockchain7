@@ -12,7 +12,7 @@ class Chain implements IChain {
 
   constructor() {
     this.chain = [];
-    const genesis: IBlock = new Block([`제네시스 블록 ${new Date()}`]);
+    const genesis: IBlock = new Block([`우석이의 제네시스 블록 ${new Date()}`]);
     this.chain.push(genesis);
   }
 

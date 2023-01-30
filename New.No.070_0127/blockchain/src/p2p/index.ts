@@ -50,6 +50,7 @@ class P2P extends Chain {
   connectSocket(socket: WebSocket, type?: MessageType): void {
     // POST /peer/add 통신을 보낸 상대와 소켓을 연결하는 메서드다.
     this.socket.push(socket);
+    // socket은 연결 정보에 대한 객체. 간단하게 설명하면 ip
     // 연결된 소켓을 socket 배열에 추가한다. (peer 목록에 추가)
     // socket은 상대방의 socket 서버 객체다. 저장하기 위한 배열인 this.socket 배열에 저장한다.
     //    - 나중에 어디와 연결되었는지 확인할 때 사용한다.
@@ -140,6 +141,7 @@ class P2P extends Chain {
     // 소켓을 생성하고 연결한다.
     const socket: WebSocket = new WebSocket(peer);
     // 상대 소켓 서버 주소를 받아서 연결을 시도한다.
+    // listen()의 server.on("connection",()=>{})을 실행한다.
     // peer에 들어있는 주소는 보낸 사람의 IP다.
     // 내가 /peer/add로 Post 통신을 보내면 받는 서버의 입장에서 peer, 내 ip는 상대의 ip인 셈이다.
     socket.on("open", () => {

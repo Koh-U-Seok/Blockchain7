@@ -65,6 +65,7 @@ app.post("/block/mine", (req: Request, res: Response) => {
   const { data }: { data: Array<string> } = req.body;
   // req.body, 즉 {"data" :"블록쌓기"}를 data에 넣는다.
   // {data}:{data:Array<string>}은 json을 객체의 형태로 넣겠다는 뜻이다.
+  // 쉽게 말해 임시 채굴이다.
 
   const newBlock: IBlock | null = ws.addBlock(data);
   // P2P가 상속받은 Chain의 addBlock에 객체화된 req.body인 data를 인자로 넣어 실행한다.
