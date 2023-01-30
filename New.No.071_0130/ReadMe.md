@@ -48,7 +48,7 @@
     A-->|SHA256|B-->|개인키로 암호화|C-->|공개키로 복호화|D
     E-->|SHA256|cond
     D-->|비교|cond
-    cond{일치하는가?\n verify}-->|Yes|F
+    cond{일치하는가?}-->|Yes|F
   ```
 
 # 타원곡선
