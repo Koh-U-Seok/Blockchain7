@@ -28,6 +28,9 @@ class Wallet implements IWallet {
       "2-6/4-7 지갑 주소 이름으로 파일 생성하고 그 내용으로 개인키 저장"
     );
     // 2-4, 4-7
+    !fs.existsSync(addressDir) && fs.mkdirSync(addressDir);
+    // 폴더가 있는지 확인한다. 없다면 폴더를 만들어준다.
+
     const fileName = path.join(addressDir, this.address);
     fs.writeFileSync(fileName, this.privateKey);
   }

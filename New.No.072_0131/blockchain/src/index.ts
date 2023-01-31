@@ -40,6 +40,7 @@ const ws: P2P = new P2P();
 app.use(express.json());
 
 // 보안 작업
+// 모든 라우터 호출에 대해 동일하게 작업해준다.
 app.use((req: Request, res: Response, next) => {
   // 5-8
   console.log("5-8 지갑 서버에서 보낸 요청 받음, 인증 확인");
@@ -136,7 +137,7 @@ app.post("/transaction/send", (req: Request, res: Response) => {
   console.log("5-10 지갑 서버에서 보낸 요청 받음");
   const isValid = Wallet.verify(req.body);
 
-  // 5-12
+  // `5-12
   console.log("5-12 서명확인 결과 출력");
   console.log(isValid);
   res.send();
