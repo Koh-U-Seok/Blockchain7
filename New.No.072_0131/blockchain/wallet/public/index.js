@@ -5,7 +5,9 @@ const balanceLi = document.getElementById("wallet_balance");
 
 const info = (_wallet) => {
   // 2-9 전달받은 지갑 정보(data)를 웹페이지에 출력
+  // 이것으로 지갑 만들기 과정이 끝난다.
   console.log("2-9/4-10 전달받은 지갑 정보(data)를 웹페이지에 출력");
+  console.log("");
 
   addressLi.innerHTML = _wallet.address;
   publicKeyLi.innerHTML = _wallet.publicKey;
@@ -26,7 +28,7 @@ document.getElementById("new_wallet_btn").onclick = () => {
 };
 
 const getInfo = async (_address) => {
-  // 4-2 지갑 주소 목록 중 하나 클릭
+  // 4-1 지갑 주소 목록 중 하나 클릭
   console.log("4-1 지갑 주소 목록 중 하나 클릭");
 
   const wallet = await axios.get("/wallet/" + _address);
@@ -46,10 +48,13 @@ document.getElementById("wallet_list_btn").onclick = () => {
     );
 
     console.log(data);
+    console.log("");
     listUl.innerHTML = "";
     data.forEach((item) => {
       listUl.innerHTML += `<li onclick="getInfo('${item}')">${item}</li>`;
       // 클릭 시 4-1 실행
+      // getInfo()의 인자에 ' '를 씌우지 않으면 있지도 않은 변수로 들어가게 되어 에러가 발생한다.
+      // 그렇기에 텍스트를 인자로 넣을 수 있도록 ' '를 씌워주었다.
     });
   });
 };
@@ -78,5 +83,6 @@ document.getElementById("transaction_form").onsubmit = (e) => {
   console.log(
     "5-2 현재 지갑 정보와 입력된 값으로 /transaction/send에 요청보냄"
   );
+  console.log("");
   axios.post("/transaction/send", req);
 };

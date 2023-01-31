@@ -12,21 +12,29 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.post("/wallet/create", (req: Request, res: Response) => {
   // 2-2 post 통신으로 /wallet/create 라우터에 요청들어왔음
-  console.log("2-2 /wallet/create 라우터에 post 메서드로요청들어왔음");
+  console.log("2-2 /wallet/create 라우터에 post 메서드로 요청들어왔음");
   // 지갑을 생성하라
 
+  res.json(
+    new Wallet()
+    // 지갑 생성
+  );
   // 2-7 생성된 지갑을 json 형식으로 응답
   console.log("2-7 생성된 지갑을 json 형식으로 응답");
-  res.json(new Wallet());
+  console.log("");
 });
 
 app.get("/wallet/list", (req: Request, res: Response) => {
   // 3-2 GET 메서드, /wallet/list 라우터로 요청 들어옴
   console.log("3-2 GET 메서드, /wallet/list 라우터로 요청 들어옴");
 
+  res.json(
+    Wallet.getList()
+    // static인 getList를 통해 지갑 목록을 가져오겠다
+  );
   // 3-4 가져온 파일 목록으로 응답한다.
   console.log("3-4 가져온 파일 목록으로 응답한다.");
-  res.json(Wallet.getList());
+  console.log("");
 });
 
 app.get("/wallet/:address", (req: Request, res: Response) => {
@@ -59,6 +67,7 @@ app.post("/transaction/send", (req: Request, res: Response) => {
   console.log(
     "5-7 생성한 서명과 hash를 만들기 위한 데이터를 가지고 http://localhost:8080/transaction/send에 요청을 보냄"
   );
+  console.log("");
   axios.post("http://localhost:8080/transaction/send", txObj, {
     headers: {
       Authorization: "Basic " + Buffer.from("admin:1234").toString("base64"),
