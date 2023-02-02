@@ -92,7 +92,7 @@ app.post("/block/mine", (req: Request, res: Response) => {
   // 쉽게 말해 임시 채굴이다.
 
   const newBlock: IBlock | null = ws.mineBlock(data);
-  //
+  // 원래는 아래의 내용이었으나 트랜잭션을 추가해야 하기에 변경하였다.
 
   // const newBlock: IBlock | null = ws.addBlock(data);
   // P2P가 상속받은 Chain의 addBlock에 객체화된 req.body인 data를 인자로 넣어 실행한다.

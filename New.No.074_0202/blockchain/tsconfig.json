@@ -1,0 +1,26 @@
+{
+  "include": ["src", "wallet", "@types"],
+  // TypeScript를 적용시킬 폴더들. 없어도 상관은 없다.
+  "exclude": ["node_modules"],
+  // include에 포함되면 안되는 폴더들(e.g 패키지) TypeScript를 적용하지 않겠다. 반드시 있어야 한다.
+  "compilerOptions": {
+    "outDir": "./build/",
+    "target": "ES6",
+    "lib": ["ES6"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "removeComments": true,
+    "allowJs": true,
+    "baseUrl": ".",
+    "typeRoots": ["./node_modules/@types", "./@types"],
+    "paths": {
+      "@core/*": ["src/core/*"],
+      "*": ["@types/*"]
+    }
+  },
+  "ts-node": {
+    "files": true,
+    "require": ["tsconfig-paths/register"]
+  }
+}
