@@ -95,7 +95,9 @@ document.getElementById("transaction_form").onsubmit = (e) => {
 };
 
 document.getElementById("block_mine_btn").onclick = () => {
+  console.log("채굴1 : 채굴 버튼이 눌렸다.");
   const data = addressLi.innerHTML;
+  console.log("채굴 2");
   if (data == "") return;
   axios.post("/block/mine", { data }).then(() => {
     axios.post("/balance", { address: data }).then(({ data }) => {
