@@ -163,20 +163,32 @@ class Block extends BlockHeader implements IBlock {
     // BlockHeader의 constructor를 실행한다.
 
     this.previousHash = _previousBlock ? _previousBlock.hash : "0".repeat(64);
+    // 이전 블록이 있다면 이전 블록의 해시를 이전 해시 자리에 넣고 없다면 0으로 가득채운 64자리 문자열을 넣는다.
+    // 이전 블록이 없다는 것은 제네시스 블록이라는 뜻이다.
+    // 위의 코드는 제네시스 블록인지 아닌지 판별한다.
+
     if (this.merkleRoot) {
+      // 머클 루트가 있는지 확인한다.
+      // BlockHeader에서 머클 루트를 만들어주었기에 true가 나와야 한다.
+
       if (_adjustmentBlock && _config) {
+        // 이전 세대의 블록 난이도와 난이도 관련 설정이 있는가?
+
         this.getDifficulty({
-          previousDifficulty: _previousBlock.difficulty,
-          adjustmentDifficulty: _adjustmentBlock.difficulty,
-          adjustmentTimestamp: _adjustmentBlock.timestamp,
-          DAI: _config.DAI,
-          averageGenerationTime: _config.averageGenerationTime,
+          previousDifficulty: _previousBlock.difficulty, // 이전 블록의 난이도
+          adjustmentDifficulty: _adjustmentBlock.difficulty, // 이전 세대의 난이도
+          adjustmentTimestamp: _adjustmentBlock.timestamp, // 이전 세대의 실제로 걸린 시간
+          DAI: _config.DAI, // 난이도 관련 설정.
+          averageGenerationTime: _config.averageGenerationTime, // 이전 세대의 문제풀이 예상 소요 시간
         });
+        // 난이도를 책정하는 메서드를 실행한다. BlockHeader로부터 상속받은 메서드다.
       }
 
       this.hash = Block.createHash(this);
+      // 해시를 만든다.
 
       if (_adjustmentBlock && _config) {
+        // 이전 세대와 난이도 관련 설정이 있다면
         this.updateBlock({
           previousDifficulty: _previousBlock.difficulty,
           adjustmentDifficulty: _adjustmentBlock.difficulty,
@@ -184,57 +196,92 @@ class Block extends BlockHeader implements IBlock {
           DAI: _config.DAI,
           averageGenerationTime: _config.averageGenerationTime,
         });
+        // getDifficulty로 이전 세대의 난이도를 계승하였고, 그 난이도를 가지고 문제풀이를 해야 한다. 이 블록만의 난이도를 새로 도출해야 한다.
       }
     } else {
       this.hash = "";
+      // 머클 루트가 없다면 정상적이지 않은 블록이므로 일부러 터뜨리기 위해 해시를 비워둔다.
     }
 
     this.data = _data;
+    // 입력받은 트랜잭션은 온전히 이 블록의 트랜잭션 자리에 놓는다.
     // console.log(this);
   }
 
-  static createHash(_block: IBlock): string {
+  static createHash(
+    _block: // 새로이 만들고 있는 블록 그 자체다.
+    IBlock
+  ): string {
+    // 해시를 만드는 메서드
     console.log("7-18 해시 생성");
     let tempStr = "";
+    // 해시로 들어갈 텍스트다.
+
     const keys = Object.keys(_block);
+    // 블록의 요소들을 다 가져왔다.
+
     for (let i = 0; i < keys.length; i++) {
+      // 블록의 요소들을 해시에 넣어야 하기 때문에 그 수만큼 반복한다.
       if (keys[i] === "hash" || keys[i] === "data") {
+        // 해시를 만들 것이기에 해시 자신은 제외한다.
+        // 트랜잭션은 머클루트에 포함되기에 마찬가지로 제외한다.
         continue;
       }
       tempStr += _block[keys[i]];
+      // tempStr에는 블록의 텍스트가 문자열로 나란히 늘어서게 된다.
     }
 
     return SHA256(tempStr).toString().toUpperCase();
+    // SHA256으로 암호화한뒤 문자열로 변환, 소문자를 대문자로 변환한 다음 반환한다.
   }
 
   updateBlock(difficultyOptions: { [keys: string]: number }): void {
+    // 난이도를 통해 문제풀이를 한다.
+
     console.log("7-19 난이도에 따라 문제 풀이");
     let hashBinary = hexToBinary(this.hash);
+    // 16진수인 해시를 2진수로 변환한다.
+
     while (!hashBinary.startsWith("0".repeat(this.difficulty))) {
+      // getDifficulty로 구한 난이도 수치 만큼 0이 해시의 앞에 놓일 때까지 반복한다.
+
       this.nonce += 1;
+      // 문제 풀이를 완료할 때까지 반복한 횟수를 1 증가시킨다.
+
       this.setTimestamp();
+      // 문제풀이를 하는 도중에는 계속해서 만든 시간을 새로 갱신한다.
+
       this.getDifficulty(difficultyOptions);
+      // 난이도를 새로 구한다.
+
       this.hash = Block.createHash(this);
+      // 논스가 바뀌었으니 해시를 새로 갱신한다.
+
       hashBinary = hexToBinary(this.hash);
+      //
     }
     console.log(hashBinary);
     console.log(hashBinary.slice(0, this.difficulty));
   }
 
   static isValidBlock(
-    _newBlock: IBlock,
-    _previousBlock: IBlock
+    _newBlock: IBlock, // 만들고 있는 블록
+    _previousBlock: IBlock // 이전  블록
   ): TResult<IBlock, string> {
+    // 이 블록에 문제가 있는가 검사하는 과정이다.
     if (_newBlock.height !== _previousBlock.height + 1) {
+      // 신규 블록의 높이와 이전 블록의 높이+1은 같아야 하는데 아니라면 오류가 있는 것이다.
       return { isError: true, msg: "높이가 다르다." };
     }
     if (_newBlock.previousHash !== _previousBlock.hash) {
+      // 신규 블록의 이전 해시와 이전 블록의 해시는 같아야 하는데 아니라면 오류가 있는 것이다.
       return {
         isError: true,
         msg: "이전 블록의 hash와 새로운 블록의 이전 hash가 다르다.",
       };
     }
     if (_newBlock.hash !== Block.createHash(_newBlock)) {
+      // 신규 블록의 해시와 신규 블록으로 만든 해시가 다르다면 오류가 있는 것이다.
       return { isError: true, msg: "hash 생성 중 오류 발생" };
     }
     return { isError: false, value: _newBlock };
