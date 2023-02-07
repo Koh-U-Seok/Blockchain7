@@ -1,6 +1,7 @@
 # GETH를 위한 세팅
 
 - geth : Go로 구현된 이더리움 서버
+- 아래의 내용을 잘 이행한다면 Geth를 성공적으로 운영할 수 있다.
 
 # Golang
 
@@ -59,7 +60,7 @@ sudo apt-get install libgmp3-dev tree make build-essential
 
 - geth의 경로
   - /home/kus/geth/go-ethereum/build/bin
-- 파일 하나를 만들자.
+- /home/사용자이름 폴더로 이동해서 파일 하나를 만들자.
 
   - 이름은 .bash_profile
   - 방법은 vi

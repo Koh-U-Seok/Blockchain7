@@ -103,7 +103,27 @@ wsl
 11. WSL에서 삭제하고 싶을 때
 
 ```sh
+wsl --unregister Ubuntu
+```
+
+12. 기본적으로 WSL 2를 사용하도록 설정
+
+```sh
+wsl --set-default-version 2
+```
+
+- 기본 버전 수정
+
+```sh
+wsl -l -v
+# 여기서는 Ubuntu 2
 wsl -unregister Ubuntu
+wsl -l -v
+# 여기서는 목록 없음
+wsl --set-default-version 2
+wsl --install -d Ubuntu
+wsl -l -v
+# 여기서는 Ubuntu 1
 ```
 
 # 기본적인 명령어들
@@ -145,6 +165,8 @@ sudo apt-get install nodejs
 - nvm ls : 현재 설치된 Node.js 버전을 보여준다. => 여러 버전을 설치 후에 선택하여 사용할 수 있다.
 - nvm install 18.12.1 : Node.js 버전 설치
 - nvm use 18.12.1 : 18.12.1 버전 Node.js를 사용한다.
+
+nvm을 설치하고 나서 껐다가 다시 실행하자. 그래도 안되면 source ~/.bashrc을 입력하고 실행
 
 # Mac OS에서 프로그램 설치
 
