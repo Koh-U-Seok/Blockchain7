@@ -167,6 +167,7 @@ eth.sendTransaction({from:eth.accounts[0], to: eth.accounts[1], value:web3.toWei
 
 ```sh
 geth --datadir ~/myGeth --unlock "지갑 주소"
+# ipc에서 계정 잠금을 풀기 위해서는 서버를 닫은 다음에 잠금을 해제하고 싶은 계정을 옵션으로 하여 다시 서버를 열어야 한다.
 
 # 서버 실행 후 비밀번호 입력하고 enter
 ```
