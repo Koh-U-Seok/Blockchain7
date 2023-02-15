@@ -25,4 +25,4 @@ console.log(tx.v);
 console.log(tx.s);
 
 console.log(tx.serialize().toString("hex"));
-// 수동으로 사인을 주었긴 했는데 메타마스크에서 알아서 사인을 해주니 이럴 필요는 없다.
+// 수동으로 사인을 주었긴 했는데 메타마스크와 Geth에서 알아서 사인을 해주니 이럴 필요는 없다.
