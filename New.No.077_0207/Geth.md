@@ -116,7 +116,11 @@ miner.start() # 채굴 시작
 miner.stop() # 채굴 중지
 eth.getBlock('latest') # 마지막 블록을 가져온다.
 web3.fromWei(eth.getBalance(eth.accounts[0]),'ether')
-eth.sendTransaction({from:eth.accounts[0], to: eth.accounts[1], value:web3.toWei(1,"ether")}) # 계정 잠금 해제 후 보내기 가능
+eth.sendTransaction({
+  from: eth.accounts[0],
+  to: eth.accounts[1],
+  value: web3.toWei(1, "ether"),
+}); // 계정 잠금 해제 후 보내기 가능
 ```
 
 # miner.start() 작동 시 아래 내용이 뜨는이유
