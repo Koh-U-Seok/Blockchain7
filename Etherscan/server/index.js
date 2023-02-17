@@ -3,20 +3,23 @@ const session = require("express-session");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
-const morgan = require("morgan");
-
-dotenv.config();
+const path = require("path");
+const cors = require("cors");
+const db = require("./models");
+const routes = require("./route/index.js");
 
 const app = express();
 
-app.set("port", process.env.PORT || 8080);
+dotenv.config();
+
+app.set("port", process.env.PORT || 8090);
 
 app.use((req, res, next) => {
   if (process.env.NODE_ENV === "production") morgan("combined")(req, res, next);
   else morgan("dev")(req, res, next);
 });
 
-// app.use("/", express.static(path.join(__dirname, "web")));
+app.use("/", express.static(path.join(__dirname, "web")));
 
 app.use(express.json());
 
@@ -37,6 +40,19 @@ app.use(
   })
 );
 
-app.listen(8080, () => {
-  console.log("http://localhost:8080");
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+
+app.use("/api", routes);
+
+// db.sequelize
+//   .sync({ force: false })
+//   .then(() => {
+//     console.log("db connected");
+//   })
+//   .catch((err) => {
+//     console.error(err);
+//   });
+
+app.listen(8090, () => {
+  console.log("http://localhost:8090");
 });

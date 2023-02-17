@@ -5,18 +5,16 @@ const Web3 = require("web3");
 
 const BlockListContainer = () => {
   async function getBlockList() {
-    let tempArr = [];
-    for (let i = 0; i < 10; i++) {
-      tempArr.push(await web3.eth.getBlock(i));
+    try {
+      const data = await axios.post("http://localhost:8090/api/blockList");
+      return data.data;
+    } catch (error) {
+      console.error(error);
     }
-    return tempArr;
   }
 
   const [blockArr, setBlockArr] = useState([]);
 
-  const web3 = new Web3(
-    new Web3.providers.HttpProvider("http://localhost:8080")
-  );
   useEffect(() => {
     getBlockList().then((data) => setBlockArr(data));
   }, []);

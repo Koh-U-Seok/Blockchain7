@@ -3,6 +3,12 @@
   display: flex;
   justify-content: center;
 }
-
 .App_innerBox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.App_innerBox > div {
+  width: 100%;
 }
