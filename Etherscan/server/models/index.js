@@ -1,10 +1,14 @@
 "use strict";
 
 const Sequelize = require("sequelize");
+
+const Block = require("./block.js");
+const Transaction = require("./transaction.js");
+
 const process = require("process");
 const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.json")[env];
-const db = {};
+const db = { Block, Transaction };
 
 let sequelize = new Sequelize(
   config.database,
@@ -12,6 +16,9 @@ let sequelize = new Sequelize(
   config.password,
   config
 );
+
+Block.init(sequelize);
+Transaction.init(sequelize);
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {

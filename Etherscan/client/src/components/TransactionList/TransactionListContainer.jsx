@@ -1,17 +1,28 @@
 import axios from "axios";
+import { useEffect, useState } from "react";
 import TransactionListComponent from "./TransactionListComponent";
 
 const TransactionListContainer = () => {
-  const request = axios.create({
-    method: "POST",
-    baseURL: "http://localhost:8080",
-    headers: {
-      "content-type": "application/json",
-    },
-  });
+  async function getTransactionList() {
+    try {
+      const data = await axios.post(
+        "http://localhost:8090/api/transactionList"
+      );
+      return data.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-  // const web3 = new Web3("http://localhost:8080");
+  const [transactionArr, setTransactionArr] = useState([]);
 
-  return <TransactionListComponent></TransactionListComponent>;
+  useEffect(() => {
+    getTransactionList().then((data) => setTransactionArr(data));
+  }, []);
+  return (
+    <TransactionListComponent
+      transactionArr={transactionArr}
+    ></TransactionListComponent>
+  );
 };
 export default TransactionListContainer;

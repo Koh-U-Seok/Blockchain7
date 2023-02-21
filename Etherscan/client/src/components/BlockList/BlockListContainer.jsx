@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import BlockListComponent from "./BlockListComponent";
-const Web3 = require("web3");
 
 const BlockListContainer = () => {
   async function getBlockList() {

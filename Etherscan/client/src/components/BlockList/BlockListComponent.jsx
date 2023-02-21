@@ -1,8 +1,5 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-const Web3 = require("web3");
 
 const BlockListComponent = ({ blockArr }) => {
   return (
@@ -10,11 +7,10 @@ const BlockListComponent = ({ blockArr }) => {
       <div className="BlockListPageBox_innerBox">
         <ul className="blockListTitle">
           <li>
-            {/* height */}
             <span>block number</span>
           </li>
           <li>
-            <span>time</span>
+            <span>timestamp</span>
           </li>
           <li>
             <span>Gas Limit</span>
@@ -69,11 +65,24 @@ export default BlockListComponent;
 const BlockListPageBox = styled.div`
   display: flex;
   justify-content: center;
+
   .BlockListPageBox_innerBox {
     width: 1024px;
+    border-radius: 5px;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+
+    border: 1px solid gainsboro;
 
     .blockListTitle {
       justify-content: space-between;
+      font-weight: bold;
     }
 
     ul {

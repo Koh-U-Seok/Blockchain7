@@ -1,11 +1,15 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import BlockListContainer from "./components/BlockList/BlockListContainer";
-import AccountListContainer from "./components/AccountList/AccountListContainer";
-import TransactionListContainer from "./components/TransactionList/TransactionListContainer";
+
 import HomeContainer from "./components/Home/HomeContainer";
-import BlockContainer from "./components/Block/BlockContainer";
+import SearchContainer from "./components/Search/SearchContainer";
 import MainContainer from "./components/Main/MainContainer";
+import BlockListContainer from "./components/BlockList/BlockListContainer";
+import BlockContainer from "./components/Block/BlockContainer";
+import AccountListContainer from "./components/AccountList/AccountListContainer";
+import AccountContainer from "./components/Account/AccountContainer";
+import TransactionListContainer from "./components/TransactionList/TransactionListContainer";
+import SearchResultContainer from "./components/SearchResult/SearchResultContainer";
 
 function App() {
   return (
@@ -13,6 +17,7 @@ function App() {
       <div className="App_innerBox">
         <div>
           <HomeContainer></HomeContainer>
+          <SearchContainer></SearchContainer>
           <Routes>
             <Route path="/" element={<MainContainer></MainContainer>}></Route>
             <Route
@@ -28,8 +33,16 @@ function App() {
               element={<AccountListContainer></AccountListContainer>}
             ></Route>
             <Route
+              path="/AccountList/:account"
+              element={<AccountContainer></AccountContainer>}
+            ></Route>
+            <Route
               path="/TransactionList"
               element={<TransactionListContainer></TransactionListContainer>}
+            ></Route>
+            <Route
+              path="/Search"
+              element={<SearchResultContainer></SearchResultContainer>}
             ></Route>
           </Routes>
         </div>

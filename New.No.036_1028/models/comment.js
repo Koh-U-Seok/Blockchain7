@@ -23,7 +23,12 @@ module.exports = class Comment extends Sequelize.Model {
   }
 
   static associate(db) {
-    db.Comment.belongsTo(db.User, { foreignKey: "user_id", targetKey: "id" });
+    // 관계 맺기
+    db.Comment.belongsTo(db.User, {
+      //  어디에 속해 있는지
+      foreignKey: "user_id",
+      targetKey: "id",
+    });
     db.Comment.belongsTo(db.Board, { foreignKey: "board_id", targetKey: "id" });
   }
 };

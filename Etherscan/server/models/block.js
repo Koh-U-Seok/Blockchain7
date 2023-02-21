@@ -1,4 +1,5 @@
 const Sequelize = require("sequelize");
+const { INTEGER } = require("sequelize");
 
 module.exports = class Block extends Sequelize.Model {
   static init(sequelize) {
@@ -11,17 +12,17 @@ module.exports = class Block extends Sequelize.Model {
           type: Sequelize.STRING(1000),
         },
         gasLimit: {
-          type: Sequelize.NUMBER(10000000),
+          type: Sequelize.INTEGER(255),
         },
         gasUsed: {
-          type: Sequelize.NUMBER(10000),
+          type: Sequelize.INTEGER(255),
         },
         hash: {
           type: Sequelize.STRING(100),
         },
-        logsBloom: {
-          type: Sequelize.TEXT,
-        },
+        // logsBloom: {
+        //   type: Sequelize.TEXT,
+        // },
         miner: {
           type: Sequelize.STRING(100),
         },
@@ -32,7 +33,9 @@ module.exports = class Block extends Sequelize.Model {
           type: Sequelize.STRING(200),
         },
         number: {
-          type: Sequelize.NUMBER(100000000),
+          type: Sequelize.INTEGER(255),
+          unique: true,
+          allowNull: false,
         },
         parentHash: {
           type: Sequelize.STRING(100),
@@ -44,13 +47,13 @@ module.exports = class Block extends Sequelize.Model {
           type: Sequelize.STRING(100),
         },
         size: {
-          type: Sequelize.NUMBER(1000),
+          type: Sequelize.INTEGER(255),
         },
         stateRoot: {
           type: Sequelize.STRING(100),
         },
         timestamp: {
-          type: Sequelize.NUMBER(1000000000000000),
+          type: Sequelize.INTEGER(255),
         },
         totalDifficulty: {
           type: Sequelize.STRING(100),
@@ -65,16 +68,27 @@ module.exports = class Block extends Sequelize.Model {
       },
       {
         sequelize,
-        modelName: "Board",
-        tableName: "board",
+        modelName: "Block",
+        tableName: "block",
         paranoid: true,
         underscored: true,
-        timestamps: true,
+        charset: "utf8mb4",
+        collate: "utf8mb4_general_ci",
       }
     );
   }
-
-  static associates(db) {
-    db.User.hasMany(db.Board);
-  }
+  // static associate(db) {
+  //   // db.Block.belongsTo(db.Account,{
+  //   //   foreignKey:"miner",
+  //   //   targetKey:"account"
+  //   // })
+  //   db.Block.belongsTo(db.Transaction, {
+  //     foreignKey: "blockHash",
+  //     sourceKey: "hash",
+  //   });
+  //   db.Block.hasMany(db.Transaction, {
+  //     foreignKey: "blockNumber",
+  //     sourceKey: "number",
+  //   });
+  // }
 };

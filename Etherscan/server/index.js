@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 const path = require("path");
 const cors = require("cors");
-const db = require("./models");
+const db = require("./models/index.js");
 const routes = require("./route/index.js");
 
 const app = express();
@@ -44,14 +44,14 @@ app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
 app.use("/api", routes);
 
-// db.sequelize
-//   .sync({ force: false })
-//   .then(() => {
-//     console.log("db connected");
-//   })
-//   .catch((err) => {
-//     console.error(err);
-//   });
+db.sequelize
+  .sync({ force: false })
+  .then(() => {
+    console.log("db connected");
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 app.listen(8090, () => {
   console.log("http://localhost:8090");

@@ -1,37 +1,91 @@
-import axios from "axios";
-import { useEffect } from "react";
 import styled from "styled-components";
 
 const BlockComponent = ({ blockData }) => {
-  console.log(blockData);
-  useEffect(() => {
-    if (!blockData) {
-      console.log(blockData.nonce);
-      console.log(blockData.nonce.slice(2));
-    }
-  }, [blockData]);
   return (
     <BlockPageBox>
       <div className="BlockPageBox_innerBox">
-        <div>{blockData.number}</div>
-        difficulty
-        <div>{blockData.extraData}</div>
-        <div>{blockData.gasLimit}</div>
-        <div>{blockData.gasUsed}</div>
-        <div>{blockData.hash}</div>
-        <div>{blockData.miner}</div>
-        <div>{blockData.nonce}</div>
-        <div>{blockData.number}</div>
-        <div>{blockData.parentHash}</div>
-        <div>{blockData.receiptsRoot}</div>
-        <div>{blockData.size}</div>
-        <div>{blockData.stateRoot}</div>
-        <div>{blockData.timestamp}</div>
-        <div>{blockData.totalDifficulty}</div>
-        <div>{blockData.transactionsRoot}</div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div className="BlockPageBox_innerBox_item">
+          <div className="BlockPageBox_innerBox_item_left">Block Height : </div>
+          <div className="BlockPageBox_innerBox_item_right">
+            {blockData.number}
+          </div>
+        </div>
+        <div className="BlockPageBox_innerBox_item">
+          <div className="BlockPageBox_innerBox_item_left">gasLimit : </div>
+          <div className="BlockPageBox_innerBox_item_right">
+            {blockData.gasLimit}
+          </div>
+        </div>
+        <div className="BlockPageBox_innerBox_item">
+          <div className="BlockPageBox_innerBox_item_left">gasUsed : </div>
+          <div className="BlockPageBox_innerBox_item_right">
+            {blockData.gasUsed}
+          </div>
+        </div>
+        <div className="BlockPageBox_innerBox_item">
+          <div className="BlockPageBox_innerBox_item_left">hash : </div>
+          <div className="BlockPageBox_innerBox_item_right">
+            {blockData.hash}
+          </div>
+        </div>
+        <div className="BlockPageBox_innerBox_item">
+          <div className="BlockPageBox_innerBox_item_left">miner : </div>
+          <div className="BlockPageBox_innerBox_item_right">
+            {blockData.miner}
+          </div>
+        </div>
+        <div className="BlockPageBox_innerBox_item">
+          <div className="BlockPageBox_innerBox_item_left">nonce : </div>
+          <div className="BlockPageBox_innerBox_item_right">
+            {blockData.nonce}
+          </div>
+        </div>
+        <div className="BlockPageBox_innerBox_item">
+          <div className="BlockPageBox_innerBox_item_left">parentHash : </div>
+          <div className="BlockPageBox_innerBox_item_right">
+            {blockData.parentHash}
+          </div>
+        </div>
+        <div className="BlockPageBox_innerBox_item">
+          <div className="BlockPageBox_innerBox_item_left">receiptsRoot</div>
+          <div className="BlockPageBox_innerBox_item_right">
+            {blockData.receiptsRoot}
+          </div>
+        </div>
+        <div className="BlockPageBox_innerBox_item">
+          <div className="BlockPageBox_innerBox_item_left">size : </div>
+          <div className="BlockPageBox_innerBox_item_right">
+            {blockData.size}
+          </div>
+        </div>
+        <div className="BlockPageBox_innerBox_item">
+          <div className="BlockPageBox_innerBox_item_left">stateRoot : </div>
+          <div className="BlockPageBox_innerBox_item_right">
+            {blockData.stateRoot}
+          </div>
+        </div>
+        <div className="BlockPageBox_innerBox_item">
+          <div className="BlockPageBox_innerBox_item_left">timestamp : </div>
+          <div className="BlockPageBox_innerBox_item_right">
+            {blockData.timestamp}
+          </div>
+        </div>
+        <div className="BlockPageBox_innerBox_item">
+          <div className="BlockPageBox_innerBox_item_left">
+            totalDifficulty :{" "}
+          </div>
+          <div className="BlockPageBox_innerBox_item_right">
+            {blockData.totalDifficulty}
+          </div>
+        </div>
+        <div className="BlockPageBox_innerBox_item">
+          <div className="BlockPageBox_innerBox_item_left">
+            transactionsRoot :{" "}
+          </div>
+          <div className="BlockPageBox_innerBox_item_right">
+            {blockData.transactionsRoot}
+          </div>
+        </div>
       </div>
     </BlockPageBox>
   );
@@ -42,10 +96,38 @@ export default BlockComponent;
 const BlockPageBox = styled.div`
   display: flex;
   justify-content: center;
+  background-color: #f8f8f8;
+  height: 100%;
 
   .BlockPageBox_innerBox {
     width: 1024px;
     max-width: 1024px;
-    background-color: #f8f8f8;
+    background-color: white;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+
+    border: 1px solid gainsboro;
+    border-radius: 10px;
+
+    .BlockPageBox_innerBox_item {
+      display: flex;
+      font-size: 20px;
+      line-height: 50px;
+
+      .BlockPageBox_innerBox_item_left {
+        width: 300px;
+        text-align: left;
+      }
+
+      .BlockPageBox_innerBox_item_right {
+        text-align: left;
+      }
+    }
   }
 `;

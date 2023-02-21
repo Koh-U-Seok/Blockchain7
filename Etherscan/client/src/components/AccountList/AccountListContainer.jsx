@@ -1,17 +1,24 @@
 import axios from "axios";
+import { useEffect, useState } from "react";
 import AccountListComponent from "./AccountListComponent";
 
 const AccountListContainer = () => {
-  const request = axios.create({
-    method: "POST",
-    baseURL: "http://localhost:8080",
-    headers: {
-      "content-type": "application/json",
-    },
-  });
+  async function getAccountList() {
+    try {
+      const data = await axios.post("http://localhost:8090/api/accountList");
+      return data.data[0];
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
-  // const web3 = new Web3("http://localhost:8080");
+  const [accountArr, setAccountArr] = useState([]);
 
-  return <AccountListComponent></AccountListComponent>;
+  useEffect(() => {
+    getAccountList().then((data) => setAccountArr(data));
+  }, []);
+
+  return <AccountListComponent accountArr={accountArr}></AccountListComponent>;
 };
+
 export default AccountListContainer;
