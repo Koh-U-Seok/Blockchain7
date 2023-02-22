@@ -3,23 +3,20 @@ const db = require("../models/index.js");
 const web3 = require("./web.js");
 
 router.post("/blockList", async (req, res) => {
-  console.log("BlockList");
   try {
-    let tempArr = [];
-    let latestBlockNumber = (await web3.eth.getBlock("latest")).number;
-
-    for (let i = 0; i < latestBlockNumber + 1; i++) {
-      tempArr.push(await web3.eth.getBlock(latestBlockNumber - i));
-    }
-    console.log(tempArr);
-    res.send(tempArr);
+    const blockList = await db.Block.findAll({
+      order: [["number", "DESC"]],
+      offset: req.body.offset,
+      limit: req.body.limit,
+    });
+    console.log("limit", req.body.limit);
+    res.send({ blockList: blockList });
   } catch (error) {
     console.error(error);
   }
 });
 
 router.post("/block", async (req, res) => {
-  console.log("Block");
   let block = {};
   try {
     block = await web3.eth.getBlock(req.body.blockNumber);
@@ -50,8 +47,13 @@ router.post("/account", async (req, res) => {
 
 router.post("/transactionList", async (req, res) => {
   try {
-    let tempArr = [];
-    // await web3.
+    const transactionList = await db.Transaction.findAll({
+      order: [["number", "DESC"]],
+      offset: req.body.offset,
+      limit: req.body.limit,
+    });
+    console.log("limit", req.body.limit);
+    res.send({ transactionList: transactionList });
   } catch (error) {
     console.error(error);
   }
@@ -59,111 +61,121 @@ router.post("/transactionList", async (req, res) => {
 
 router.post("/search", async (req, res) => {
   let result = {};
-  console.log("req.body.searchType : ", req.body.searchType);
-  console.log("req.body.searchType : ", req.body.searchType);
   switch (req.body.searchType) {
     case "blockNumber":
-      result = await db.Block.findAll({
+      result = await db.Block.findOne({
         where: { number: req.body.searchData },
       });
-      console.log("result : ", result);
-      res.json({ isError: false, result: result });
-      break;
+      if (result != undefined || result != null) {
+        res.json({ isError: false, result: result });
+        break;
+      } else {
+        res.json({ isError: false, result: -1 });
+        break;
+      }
     case "hash":
-      result = await db.Block.findAll({ where: { hash: req.body.searchData } });
-      res.json({ isError: false, result: result });
-      break;
+      result = await db.Block.findOne({ where: { hash: req.body.searchData } });
+      console.log(result);
+      if (result != undefined || result != null) {
+        res.json({ isError: false, result: result });
+        break;
+      } else {
+        res.json({ isError: false, result: -2 });
+        break;
+      }
     case "account":
-      result = await db.Account.findAll({
-        where: { hash: req.body.searchData },
-      });
-      res.json({ isError: false, result: result });
-      break;
+      let accounts = await web3.eth.getAccounts();
+      let newArr = [];
+      for (let i = 0; i < accounts.length; i++) {
+        newArr.push(accounts[i].toUpperCase());
+      }
+      if (newArr.indexOf(req.body.searchData.toUpperCase()) != -1) {
+        const temp = newArr.indexOf(req.body.searchData.toUpperCase());
+        result = {
+          account: req.body.searchData,
+          balance: await web3.eth.getBalance(accounts[temp]),
+        };
+        res.json({ isError: false, result: result });
+        break;
+      } else {
+        res.json({ isError: false, result: -3 });
+        break;
+      }
     case "transaction":
-      result = await db.Transaction.findAll({
+      result = await db.Transaction.findOne({
         where: { hash: req.body.searchData },
       });
-      res.json({ isError: false, result: result });
-      break;
+      if (result != undefined || result != null) {
+        res.json({ isError: false, result: result });
+        break;
+      } else {
+        res.json({ isError: false, result: -4 });
+        break;
+      }
     default:
       res.send({ isError: true });
   }
 });
-// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// ==========================================================
 
-let latestBlockNumber = 0;
-let dBLatestBlockNumber = 0;
-db.Block.max("number")
-  .then((max) => {
-    dBLatestBlockNumber = max == null ? 0 : max;
-  })
-  .then(() => {
-    web3.eth
-      .getBlock("latest")
-      .then((data) => {
-        latestBlockNumber = data.number;
-      })
-      .then(() => {
-        if (latestBlockNumber > dBLatestBlockNumber) {
-          web3.eth
-            .getBlock("latest")
-            .then((data) => {
-              latestBlockNumber = data.number;
-            })
-            .then(() => {
-              for (
-                let i = dBLatestBlockNumber;
-                i < latestBlockNumber + 1;
-                i++
-              ) {
-                web3.eth.getBlock(i).then(async (data) => {
-                  await db.Block.create({
-                    difficulty: data.difficulty,
-                    extraData: data.extraData,
-                    gasLimit: data.gasLimit,
-                    gasUsed: data.gasUsed,
-                    hash: data.hash,
-                    miner: data.miner,
-                    mixHash: data.mixHash,
-                    nonce: data.nonce,
-                    number: data.number,
-                    parentHash: data.parentHash,
-                    receiptsRoot: data.receiptsRoot,
-                    sha3Uncles: data.sha3Uncles,
-                    size: data.size,
-                    stateRoot: data.stateRoot,
-                    timestamp: data.timestamp,
-                    totalDifficulty: data.totalDifficulty,
-                    transactions: data.transactions,
-                    transactionsRoot: data.transactionsRoot,
-                    uncles: data.uncles,
-                  });
-                });
-              }
-            });
-        }
-      });
-  });
+// let latestBlockNumber = 0;
+// let dBLatestBlockNumber = 0;
+// db.Block.max("number")
+//   .then((max) => {
+//     dBLatestBlockNumber = max == null ? 0 : max;
+//   })
+//   .then(() => {
+//     web3.eth
+//       .getBlock("latest")
+//       .then((data) => {
+//         latestBlockNumber = data.number;
+//       })
+//       .then(() => {
+//         console.log("latestBlockNumber : ", latestBlockNumber);
+//         console.log("dBLatestBlockNumber : ", dBLatestBlockNumber);
+//         if (latestBlockNumber > dBLatestBlockNumber) {
+//           web3.eth
+//             .getBlock("latest")
+//             .then((data) => {
+//               latestBlockNumber = data.number;
+//             })
+//             .then(() => {
+//               for (
+//                 let i =
+//                   dBLatestBlockNumber == 0
+//                     ? dBLatestBlockNumber
+//                     : dBLatestBlockNumber + 2;
+//                 i < latestBlockNumber + 2;
+//                 i++
+//               ) {
+//                 web3.eth.getBlock(i).then(async (data) => {
+//                   await db.Block.create({
+//                     difficulty: data.difficulty,
+//                     extraData: data.extraData,
+//                     gasLimit: data.gasLimit,
+//                     gasUsed: data.gasUsed,
+//                     hash: data.hash,
+//                     miner: data.miner,
+//                     mixHash: data.mixHash,
+//                     nonce: data.nonce,
+//                     number: data.number,
+//                     parentHash: data.parentHash,
+//                     receiptsRoot: data.receiptsRoot,
+//                     sha3Uncles: data.sha3Uncles,
+//                     size: data.size,
+//                     stateRoot: data.stateRoot,
+//                     timestamp: data.timestamp,
+//                     totalDifficulty: data.totalDifficulty,
+//                     transactions: data.transactions,
+//                     transactionsRoot: data.transactionsRoot,
+//                     uncles: data.uncles,
+//                   });
+//                   console.log(i, " 번째 블록 추가되었다.");
+//                 });
+//               }
+//             });
+//         }
+//       });
+//   });
 
 module.exports = router;

@@ -4,6 +4,7 @@ import SearchComponent from "./SearchComponent";
 
 const navigateToSearch = async (searchType, searchData, navigate) => {
   navigate(`/Search?searchType=${searchType}&searchData=${searchData}`);
+  window.location.reload();
 };
 
 const SearchContainer = () => {

@@ -1,7 +1,11 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const BlockListComponent = ({ blockArr }) => {
+const BlockListComponent = ({ blockArr, NextPage, PrevPage }) => {
+  useEffect(() => {
+    console.log(blockArr);
+  }, [blockArr]);
   return (
     <BlockListPageBox>
       <div className="BlockListPageBox_innerBox">
@@ -27,7 +31,6 @@ const BlockListComponent = ({ blockArr }) => {
           return (
             <ul key={`blockListUl_${data.number}`}>
               <li>
-                {/* height */}
                 <span>
                   <Link to={`/BlockList/${data.number}`}>{data.number}</Link>
                 </span>
@@ -55,6 +58,21 @@ const BlockListComponent = ({ blockArr }) => {
             </ul>
           );
         })}
+
+        <button
+          onClick={() => {
+            PrevPage();
+          }}
+        >
+          Prev
+        </button>
+        <button
+          onClick={() => {
+            NextPage();
+          }}
+        >
+          Next
+        </button>
       </div>
     </BlockListPageBox>
   );

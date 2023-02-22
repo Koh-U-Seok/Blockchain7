@@ -1,10 +1,15 @@
 const Sequelize = require("sequelize");
-const { INTEGER } = require("sequelize");
+const { STRING } = require("sequelize");
 
 module.exports = class Block extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
+        number: {
+          type: Sequelize.STRING(255),
+          unique: true,
+          allowNull: false,
+        },
         difficulty: {
           type: Sequelize.STRING(1000),
         },
@@ -12,17 +17,15 @@ module.exports = class Block extends Sequelize.Model {
           type: Sequelize.STRING(1000),
         },
         gasLimit: {
-          type: Sequelize.INTEGER(255),
+          type: Sequelize.STRING(255),
         },
         gasUsed: {
-          type: Sequelize.INTEGER(255),
+          type: Sequelize.STRING(255),
         },
         hash: {
           type: Sequelize.STRING(100),
+          unique: true,
         },
-        // logsBloom: {
-        //   type: Sequelize.TEXT,
-        // },
         miner: {
           type: Sequelize.STRING(100),
         },
@@ -32,11 +35,7 @@ module.exports = class Block extends Sequelize.Model {
         nonce: {
           type: Sequelize.STRING(200),
         },
-        number: {
-          type: Sequelize.INTEGER(255),
-          unique: true,
-          allowNull: false,
-        },
+
         parentHash: {
           type: Sequelize.STRING(100),
         },
@@ -47,13 +46,13 @@ module.exports = class Block extends Sequelize.Model {
           type: Sequelize.STRING(100),
         },
         size: {
-          type: Sequelize.INTEGER(255),
+          type: Sequelize.STRING(255),
         },
         stateRoot: {
           type: Sequelize.STRING(100),
         },
         timestamp: {
-          type: Sequelize.INTEGER(255),
+          type: Sequelize.STRING(255),
         },
         totalDifficulty: {
           type: Sequelize.STRING(100),
@@ -77,18 +76,18 @@ module.exports = class Block extends Sequelize.Model {
       }
     );
   }
-  // static associate(db) {
-  //   // db.Block.belongsTo(db.Account,{
-  //   //   foreignKey:"miner",
-  //   //   targetKey:"account"
-  //   // })
-  //   db.Block.belongsTo(db.Transaction, {
-  //     foreignKey: "blockHash",
-  //     sourceKey: "hash",
-  //   });
-  //   db.Block.hasMany(db.Transaction, {
-  //     foreignKey: "blockNumber",
-  //     sourceKey: "number",
-  //   });
-  // }
+  static associate(db) {
+    // db.Block.belongsTo(db.Account,{
+    //   foreignKey:"miner",
+    //   targetKey:"account"
+    // })
+    db.Block.hasMany(db.Transaction, {
+      foreignKey: "blockHash",
+      sourceKey: "hash",
+    });
+    db.Block.hasMany(db.Transaction, {
+      foreignKey: "blockNumber",
+      sourceKey: "number",
+    });
+  }
 };

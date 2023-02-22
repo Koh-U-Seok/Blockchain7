@@ -3,111 +3,172 @@ import styled from "styled-components";
 
 const SearchResultComponent = ({ searchResult, searchType, searchData }) => {
   return (
-    <SearchResultDiv>
-      <div className="SearchResultDiv_innerBox">
-        <div className="SearchResultDiv_innerBox_title">
+    <SearchResultPageBox>
+      <div className="SearchResultPageBox_innerBox">
+        <div className="SearchResultPageBox_innerBox_title">
           search type : {searchType} / search Data : {searchData}
         </div>
-        <div className="SearchResultDiv_itemBox">
-          {searchResult.length > 0
-            ? searchResult.map((data, index) => {
-                return (
-                  <ul key={`searchResult_${index}`}>
-                    {searchType == "블록 번호" ? (
-                      <>
-                        <li>
-                          {/* height */}
-                          <span>
-                            <Link to={`/BlockList/${data.number}`}>
-                              {data.number}
-                            </Link>
-                          </span>
-                        </li>
-                        <li>
-                          <span>
-                            <Link to={`/BlockList/${data.number}`}>
-                              {data.timestamp}
-                            </Link>
-                          </span>
-                        </li>
-                        <li>
-                          <span>
-                            <Link to={`/BlockList/${data.number}`}>
-                              {data.gasLimit}
-                            </Link>
-                          </span>
-                        </li>
-                        <li>
-                          <span>
-                            <Link to={`/BlockList/${data.number}`}>
-                              {data.hash}
-                            </Link>
-                          </span>
-                        </li>
-                        <li>
-                          <span>
-                            <Link to={`/BlockList/${data.number}`}>
-                              {data.miner}
-                            </Link>
-                          </span>
-                        </li>
-                      </>
-                    ) : searchType == "해시" ? (
-                      <>
-                        <li>
-                          <span>
-                            <Link to={`/BlockList/${data.number}`}>
-                              {data.hash}
-                            </Link>
-                          </span>
-                        </li>
-                        <span>aaaaaaa</span>
-                        <li>
-                          <span>
-                            <Link to={`/BlockList/${data.number}`}>
-                              {data.number}
-                            </Link>
-                          </span>
-                        </li>
-                        <li>
-                          <span>
-                            <Link to={`/BlockList/${data.number}`}>
-                              {data.miner}
-                            </Link>
-                          </span>
-                        </li>
-                      </>
-                    ) : searchType == "지갑" ? (
-                      <li>
-                        <span>
-                          <Link to={`/accountList/${data}`}>
-                            {data.toUpperCase()}
-                          </Link>
-                        </span>
-                      </li>
-                    ) : searchType == "트랜잭션" ? (
-                      <li></li>
-                    ) : (
-                      <div>검색에 오류가 있습니다.</div>
-                    )}
-                  </ul>
-                );
-              })
-            : ""}
+        <div className="SearchResultPageBox_innerBox_itemBox">
+          {searchResult != undefined ? (
+            searchType == "블록 번호" ? (
+              <ul className="SearchResultPageBox_innerBox_itemBox_title">
+                <li>block number</li>
+                <li>timestamp</li>
+                <li>Gas Limit</li>
+                <li>hash</li>
+                <li>miner</li>
+              </ul>
+            ) : searchType == "해시" ? (
+              <ul className="SearchResultPageBox_innerBox_itemBox_title">
+                <li>hash</li>
+                <li>block number</li>
+                <li>miner</li>
+              </ul>
+            ) : searchType == "지갑" ? (
+              <ul className="SearchResultPageBox_innerBox_itemBox_title">
+                <li>account</li>
+                <li>balance</li>
+              </ul>
+            ) : searchType == "트랜잭션" ? (
+              <ul className="SearchResultPageBox_innerBox_itemBox_title">
+                <li>transaction hash</li>
+                <li>from</li>
+                <li>to</li>
+                <li>wei</li>
+              </ul>
+            ) : (
+              <div></div>
+            )
+          ) : (
+            <div>감사합니다</div>
+          )}
+          {searchResult != undefined ? (
+            searchResult == -1 ? (
+              <div>잘못된 블록 번호입니다.</div>
+            ) : searchResult == -2 ? (
+              <div>잘못된 해시입니다.</div>
+            ) : searchResult == -3 ? (
+              <div>잘못된 지갑 주소입니다.</div>
+            ) : searchResult == -4 ? (
+              <div>잘못된 트랜잭션입니다.</div>
+            ) : (
+              <ul className="SearchResultPageBox_innerBox_itemBox_item">
+                {searchType == "블록 번호" ? (
+                  <>
+                    <li>
+                      {/* height */}
+                      <span>
+                        <Link to={`/BlockList/${searchResult.number}`}>
+                          {searchResult.number}
+                        </Link>
+                      </span>
+                    </li>
+                    <li>
+                      <span>
+                        <Link to={`/BlockList/${searchResult.number}`}>
+                          {searchResult.timestamp}
+                        </Link>
+                      </span>
+                    </li>
+                    <li>
+                      <span>
+                        <Link to={`/BlockList/${searchResult.number}`}>
+                          {searchResult.gasLimit}
+                        </Link>
+                      </span>
+                    </li>
+                    <li>
+                      <span>
+                        <Link to={`/BlockList/${searchResult.number}`}>
+                          {searchResult.hash}
+                        </Link>
+                      </span>
+                    </li>
+                    <li>
+                      <span>
+                        <Link to={`/BlockList/${searchResult.number}`}>
+                          {searchResult.miner}
+                        </Link>
+                      </span>
+                    </li>
+                  </>
+                ) : searchType == "해시" ? (
+                  <>
+                    <li>
+                      <span>
+                        <Link to={`/BlockList/${searchResult.number}`}>
+                          {searchResult.hash}
+                        </Link>
+                      </span>
+                    </li>
+                    <li>
+                      <span>
+                        <Link to={`/BlockList/${searchResult.number}`}>
+                          {searchResult.number}
+                        </Link>
+                      </span>
+                    </li>
+                    <li>
+                      <span>
+                        <Link to={`/BlockList/${searchResult.number}`}>
+                          {searchResult.miner}
+                        </Link>
+                      </span>
+                    </li>
+                  </>
+                ) : searchType == "지갑" ? (
+                  <>
+                    <li>
+                      <span>
+                        <Link to={`/accountList/${searchResult.account}`}>
+                          {searchResult.account}
+                        </Link>
+                      </span>
+                    </li>
+                    <li>
+                      <span>
+                        <Link to={`/accountList/${searchResult.account}`}>
+                          {searchResult.balance != undefined
+                            ? searchResult.balance
+                                .toString()
+                                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                            : 0}{" "}
+                          wei / {searchResult.balance / Math.pow(10, 18)} Eth
+                        </Link>
+                      </span>
+                    </li>
+                  </>
+                ) : searchType == "트랜잭션" ? (
+                  <li>
+                    <span>
+                      <Link to={`/transactionList/${searchResult.hash}`}>
+                        {searchResult.hash}
+                      </Link>
+                    </span>
+                  </li>
+                ) : (
+                  <div>검색에 오류가 있습니다.</div>
+                )}
+              </ul>
+            )
+          ) : (
+            <div>사랑합니다</div>
+          )}
         </div>
       </div>
-    </SearchResultDiv>
+    </SearchResultPageBox>
   );
 };
 
 export default SearchResultComponent;
 
-const SearchResultDiv = styled.div`
+const SearchResultPageBox = styled.div`
   display: flex;
   justify-content: center;
 
-  .BlockListPageBox_innerBox {
+  .SearchResultPageBox_innerBox {
     width: 1024px;
+    min-height: 600px;
     border-radius: 5px;
 
     margin-top: 20px;
@@ -120,14 +181,18 @@ const SearchResultDiv = styled.div`
 
     border: 1px solid gainsboro;
 
-    .blockListTitle {
-      justify-content: space-between;
+    .SearchResultPageBox_innerBox_title {
+      display: flex;
+      justify-content: center;
       font-weight: bold;
     }
 
+    .SearchResultPageBox_innerBox_itemBox_title {
+      font-weight: bold;
+    }
     ul {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       padding-inline-start: 0px;
       padding-top: 9px;
       padding-bottom: 9px;

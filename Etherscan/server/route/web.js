@@ -7,45 +7,124 @@ const web3 = new Web3(
 );
 
 web3.eth.subscribe("newBlockHeaders", (error, result) => {
-  // console.log(result);
-  // if (!error) {
-  //   console.log(result);
-  // }
-});
-
-web3.eth.subscribe("pendingTransactions", (error, result) => {
-  console.log("거래 했다.");
   if (!error) {
-    console.log("pendigTransaction : ", result);
-    web3.eth.getTransaction(result).then(async (data) => {
-      console.log("data : ", data);
-      console.log("data.value :", data.value);
-      console.log("typeof data.value : ", typeof data.value);
-      for (let i = 0; i < Object.keys(data).length; i++) {
-        console.log(Object.keys(data)[i], ", ", typeof Object.keys(data)[i]);
-      }
-
-      await db.Transaction.create({
-        blockHash: data.blockHash,
-        blockNumber: data.blockNumber,
-        chainId: data.chainId,
-        from: data.from,
-        gas: data.gas,
-        gasPrice: data.gasPrice,
-        hash: data.hash,
-        input: data.input,
-        nonce: data.nonce,
-        r: data.r,
-        s: data.s,
-        to: data.to,
-        transactionIndex: data.transactionIndex,
-        type: data.type,
-        v: data.v,
-        value: data.value,
+    db.Block.max("number")
+      .then((max) => {
+        dBLatestBlockNumber = max == null ? 0 : max;
+      })
+      .then(() => {
+        web3.eth
+          .getBlock("latest")
+          .then((data) => {
+            latestBlockNumber = data.number;
+          })
+          .then(() => {
+            if (latestBlockNumber > dBLatestBlockNumber) {
+              web3.eth
+                .getBlock("latest")
+                .then((data) => {
+                  latestBlockNumber = data.number;
+                })
+                .then(() => {
+                  console.log("dBLatestBlockNumber : ", dBLatestBlockNumber);
+                  console.log("latestBlockNumber : ", latestBlockNumber);
+                  for (
+                    let i = dBLatestBlockNumber;
+                    i < latestBlockNumber + 1;
+                    i++
+                  ) {
+                    web3.eth.getBlock(i).then(async (data) => {
+                      console.log("블록을 생성한다.");
+                      // for (let aaa = 0; aaa < Object.keys(data).length; aaa++) {
+                      //   console.log(
+                      //     Object.keys(data)[aaa],
+                      //     typeof Object.keys(data)[aaa]
+                      //   );
+                      // }
+                      await db.Block.create({
+                        difficulty: data.difficulty,
+                        extraData: data.extraData,
+                        gasLimit: data.gasLimit,
+                        gasUsed: data.gasUsed,
+                        hash: data.hash,
+                        miner: data.miner,
+                        mixHash: data.mixHash,
+                        nonce: data.nonce,
+                        number: data.number,
+                        parentHash: data.parentHash,
+                        receiptsRoot: data.receiptsRoot,
+                        sha3Uncles: data.sha3Uncles,
+                        size: data.size,
+                        stateRoot: data.stateRoot,
+                        timestamp: data.timestamp,
+                        totalDifficulty: data.totalDifficulty,
+                        transactions: data.transactions,
+                        transactionsRoot: data.transactionsRoot,
+                        uncles: data.uncles,
+                      });
+                      console.log("블록의 해시 : ", data.hash);
+                      if (
+                        (await web3.eth.getTransaction(data.hash[0])) != null
+                      ) {
+                        for (let j = 0; j < data.hash.length; j++) {
+                          await web3.eth
+                            .getTransaction(data.hash[j])
+                            .then(async (tx) => {
+                              console.log("들어가는 중");
+                              await db.Transaction.create({
+                                blockHash: data.hash,
+                                blockNumber: data.number,
+                                chainId: tx.chainId,
+                                from: tx.from,
+                                gas: tx.gas,
+                                gasPrice: tx.gasPrice,
+                                hash: tx.hash,
+                                input: tx.input,
+                                nonce: tx.nonce,
+                                r: tx.r,
+                                s: tx.s,
+                                to: tx.to,
+                                transactionIndex: tx.transactionIndex,
+                                type: tx.type,
+                                v: tx.v,
+                                value: tx.value,
+                              });
+                            });
+                        }
+                      }
+                    });
+                  }
+                });
+            }
+          });
       });
-    });
-  } else console.log("에러 발생 : ", error);
+  }
 });
+
+// web3.eth.subscribe("pendingTransactions", async (error, result) => {
+//   if (!error) {
+//     web3.eth.getTransaction(result).then(async (data) => {
+//       await db.Transaction.create({
+//         // blockHash: data.blockHash,
+//         // blockNumber: data.blockNumber,
+//         chainId: data.chainId,
+//         from: data.from,
+//         gas: data.gas,
+//         gasPrice: data.gasPrice,
+//         hash: data.hash,
+//         input: data.input,
+//         nonce: data.nonce,
+//         r: data.r,
+//         s: data.s,
+//         to: data.to,
+//         transactionIndex: data.transactionIndex,
+//         type: data.type,
+//         v: data.v,
+//         value: data.value,
+//       });
+//     });
+//   } else console.log("에러 발생 : ", error);
+// });
 
 module.exports = web3;
 

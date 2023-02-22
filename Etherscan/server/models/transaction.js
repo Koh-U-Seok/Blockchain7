@@ -4,8 +4,8 @@ module.exports = class Transaction extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
-        blockHash: { type: Sequelize.STRING(66), allowNull: true },
-        blockNumber: { type: Sequelize.STRING, allowNull: true },
+        // blockHash: { type: Sequelize.STRING(66), allowNull: true },
+        // blockNumber: { type: Sequelize.STRING, allowNull: true },
         chainId: { type: Sequelize.STRING },
         from: { type: Sequelize.STRING(42) },
         gas: { type: Sequelize.STRING },
@@ -33,14 +33,14 @@ module.exports = class Transaction extends Sequelize.Model {
       }
     );
   }
-  // static associate(db) {
-  //   db.Transaction.belongsTo(db.Block, {
-  //     foreignKey: "blockHash",
-  //     targetKey: "hash",
-  //   });
-  //   db.Transaction.belongsTo(db.Block, {
-  //     foreignKey: "blockNumber",
-  //     targetKey: "number",
-  //   });
-  // }
+  static associate(db) {
+    db.Transaction.belongsTo(db.Block, {
+      foreignKey: "blockHash",
+      targetKey: "hash",
+    });
+    db.Transaction.belongsTo(db.Block, {
+      foreignKey: "blockNumber",
+      targetKey: "number",
+    });
+  }
 };
