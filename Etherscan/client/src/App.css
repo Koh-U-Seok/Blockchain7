@@ -3,6 +3,9 @@
   display: flex;
   justify-content: center;
 }
+*::-webkit-scrollbar {
+  display: none;
+}
 .App_innerBox {
   width: 100%;
   display: flex;

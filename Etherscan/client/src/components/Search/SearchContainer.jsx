@@ -11,6 +11,7 @@ const SearchContainer = () => {
   const [searchType, setSearchType] = useState("블록 번호");
   const [searchData, setSearchData] = useState("");
   const navigate = useNavigate();
+
   return (
     <SearchComponent
       searchType={searchType}

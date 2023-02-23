@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import getMaxNum from "../Pagination/getMaxNum";
 import BlockListComponent from "./BlockListComponent";
 
 const BlockListContainer = () => {
   async function getBlockList({ offset, limit }) {
     try {
-      console.log("limit :", limit);
       const data = Object.values(
         (
           await axios.post("http://localhost:8090/api/blockList", {
@@ -14,7 +14,6 @@ const BlockListContainer = () => {
           })
         ).data.blockList
       );
-      console.log(data);
       return data;
     } catch (error) {
       console.error(error);
@@ -27,21 +26,27 @@ const BlockListContainer = () => {
   const [maxNum, setMaxNum] = useState(0);
 
   const NextPage = () => {
-    // if(parseInt())
-    setOffset(offset + 1);
+    if (parseInt(maxNum / limit) == parseInt(offset / limit)) return;
+    setOffset(offset + 10);
+    console.log("maxNum : ", maxNum);
     console.log("offset : ", offset);
+    console.log("");
   };
+
   const PrevPage = () => {
     if (offset == 0) {
       return;
     }
-    setOffset(offset - 1);
-    console.log("offset : ", offset);
+    setOffset(offset - 10);
   };
 
   useEffect(() => {
     getBlockList({ offset, limit }).then((data) => setBlockArr(data));
   }, [offset]);
+
+  useEffect(() => {
+    getMaxNum("blockList").then((data) => setMaxNum(data));
+  }, [maxNum]);
 
   return (
     <BlockListComponent

@@ -29,8 +29,11 @@ export default AccountListComponent;
 const AccountListPageBox = styled.div`
   display: flex;
   justify-content: center;
+  background-color: #f8f8f8;
+  height: 100vh;
 
   .AccountListPageBox_innerBox {
+    background-color: white;
     width: 1024px;
 
     border-radius: 5px;

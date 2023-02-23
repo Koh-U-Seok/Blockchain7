@@ -9,7 +9,6 @@ router.post("/blockList", async (req, res) => {
       offset: req.body.offset,
       limit: req.body.limit,
     });
-    console.log("limit", req.body.limit);
     res.send({ blockList: blockList });
   } catch (error) {
     console.error(error);
@@ -48,14 +47,43 @@ router.post("/account", async (req, res) => {
 router.post("/transactionList", async (req, res) => {
   try {
     const transactionList = await db.Transaction.findAll({
-      order: [["number", "DESC"]],
+      order: [["blockNumber", "DESC"]],
       offset: req.body.offset,
       limit: req.body.limit,
     });
-    console.log("limit", req.body.limit);
+
     res.send({ transactionList: transactionList });
   } catch (error) {
     console.error(error);
+  }
+});
+
+router.post("/transaction", async (req, res) => {
+  try {
+    const transaction = await web3.eth.getTransaction(req.body.transactionHash);
+    res.send({ msg: "갈갈", transaction: transaction });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+router.post("/getMaxNum", async (req, res) => {
+  let maxNum = 0;
+  switch (req.body.list) {
+    case "blockList":
+      maxNum = await db.Block.count();
+      res.send({ isError: false, maxNum: maxNum });
+      break;
+    case "accountList":
+      maxNum = (await web3.eth.getAccounts()).length;
+      res.send({ isError: false, maxNum: maxNum });
+      break;
+    case "transactionList":
+      maxNum = await db.Transaction.count();
+      res.send({ isError: false, maxNum: maxNum });
+      break;
+    default:
+      res.send({ isError: true });
   }
 });
 
@@ -63,19 +91,21 @@ router.post("/search", async (req, res) => {
   let result = {};
   switch (req.body.searchType) {
     case "blockNumber":
-      result = await db.Block.findOne({
-        where: { number: req.body.searchData },
-      });
-      if (result != undefined || result != null) {
-        res.json({ isError: false, result: result });
-        break;
-      } else {
-        res.json({ isError: false, result: -1 });
-        break;
+      if (Number.isInteger(parseInt(req.body.searchData))) {
+        result = await db.Block.findOne({
+          where: { number: req.body.searchData },
+        });
+        console.log("result:", result);
+        if (result != undefined || result != null) {
+          res.json({ isError: false, result: result });
+          break;
+        }
       }
+      res.json({ isError: false, result: -1 });
+      break;
+
     case "hash":
       result = await db.Block.findOne({ where: { hash: req.body.searchData } });
-      console.log(result);
       if (result != undefined || result != null) {
         res.json({ isError: false, result: result });
         break;

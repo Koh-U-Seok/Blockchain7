@@ -1,6 +1,30 @@
 import styled from "styled-components";
 
 const BlockComponent = ({ blockData }) => {
+  function changeTimestamp(timestamp) {
+    const date = new Date(parseInt(timestamp + "000"));
+
+    const year = date.getFullYear().toString();
+    const month = ("0" + (date.getMonth() + 1)).slice(-2);
+    const day = ("0" + date.getDate()).slice(-2);
+    const hour = ("0" + date.getHours()).slice(-2);
+    const minute = ("0" + date.getMinutes()).slice(-2);
+    const second = ("0" + date.getSeconds()).slice(-2);
+    return (
+      year +
+      "년 " +
+      month +
+      "월 " +
+      day +
+      "일 " +
+      hour +
+      "시 " +
+      minute +
+      "분 " +
+      second +
+      "초"
+    );
+  }
   return (
     <BlockPageBox>
       <div className="BlockPageBox_innerBox">
@@ -67,7 +91,7 @@ const BlockComponent = ({ blockData }) => {
         <div className="BlockPageBox_innerBox_item">
           <div className="BlockPageBox_innerBox_item_left">timestamp : </div>
           <div className="BlockPageBox_innerBox_item_right">
-            {blockData.timestamp}
+            {changeTimestamp(blockData.timestamp)}
           </div>
         </div>
         <div className="BlockPageBox_innerBox_item">

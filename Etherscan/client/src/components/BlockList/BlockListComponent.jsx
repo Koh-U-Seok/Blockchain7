@@ -1,11 +1,16 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import PageShiftButton from "../Pagination/PageShiftButton";
 
 const BlockListComponent = ({ blockArr, NextPage, PrevPage }) => {
-  useEffect(() => {
-    console.log(blockArr);
-  }, [blockArr]);
+  function changeTimestamp(timestamp) {
+    const date = new Date(parseInt(timestamp + "000"));
+
+    const year = date.getFullYear().toString().slice(-2);
+    const month = ("0" + (date.getMonth() + 1)).slice(-2);
+    const day = ("0" + date.getDate()).slice(-2);
+    return year + "년 " + month + "월 " + day + " 일";
+  }
   return (
     <BlockListPageBox>
       <div className="BlockListPageBox_innerBox">
@@ -37,7 +42,9 @@ const BlockListComponent = ({ blockArr, NextPage, PrevPage }) => {
               </li>
               <li>
                 <span>
-                  <Link to={`/BlockList/${data.number}`}>{data.timestamp}</Link>
+                  <Link to={`/BlockList/${data.number}`}>
+                    {changeTimestamp(data.timestamp)}
+                  </Link>
                 </span>
               </li>
               <li>
@@ -59,20 +66,10 @@ const BlockListComponent = ({ blockArr, NextPage, PrevPage }) => {
           );
         })}
 
-        <button
-          onClick={() => {
-            PrevPage();
-          }}
-        >
-          Prev
-        </button>
-        <button
-          onClick={() => {
-            NextPage();
-          }}
-        >
-          Next
-        </button>
+        <PageShiftButton
+          PrevPage={PrevPage}
+          NextPage={NextPage}
+        ></PageShiftButton>
       </div>
     </BlockListPageBox>
   );
@@ -83,10 +80,13 @@ export default BlockListComponent;
 const BlockListPageBox = styled.div`
   display: flex;
   justify-content: center;
+  background-color: #f8f8f8;
+  height: 100vh;
 
   .BlockListPageBox_innerBox {
     width: 1024px;
     border-radius: 5px;
+    background-color: white;
 
     margin-top: 20px;
     margin-bottom: 20px;

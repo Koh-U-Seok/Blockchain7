@@ -43,9 +43,10 @@ const AccountPageBox = styled.div`
   display: flex;
   justify-content: center;
   background-color: #f8f8f8;
-  height: 100%;
+  height: 100vh;
 
   .AccountPageBox_innerBox {
+    background-color: white;
     width: 1024px;
     max-width: 1024px;
     background-color: white;

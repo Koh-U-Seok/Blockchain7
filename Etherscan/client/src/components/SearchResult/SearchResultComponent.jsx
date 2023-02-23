@@ -2,6 +2,14 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const SearchResultComponent = ({ searchResult, searchType, searchData }) => {
+  function changeTimestamp(timestamp) {
+    const date = new Date(parseInt(timestamp + "000"));
+
+    const year = date.getFullYear().toString().slice(-2);
+    const month = ("0" + (date.getMonth() + 1)).slice(-2);
+    const day = ("0" + date.getDate()).slice(-2);
+    return year + "년 " + month + "월 " + day + " 일";
+  }
   return (
     <SearchResultPageBox>
       <div className="SearchResultPageBox_innerBox">
@@ -66,7 +74,7 @@ const SearchResultComponent = ({ searchResult, searchType, searchData }) => {
                     <li>
                       <span>
                         <Link to={`/BlockList/${searchResult.number}`}>
-                          {searchResult.timestamp}
+                          {changeTimestamp(searchResult.timestamp)}
                         </Link>
                       </span>
                     </li>
@@ -139,13 +147,41 @@ const SearchResultComponent = ({ searchResult, searchType, searchData }) => {
                     </li>
                   </>
                 ) : searchType == "트랜잭션" ? (
-                  <li>
-                    <span>
-                      <Link to={`/transactionList/${searchResult.hash}`}>
-                        {searchResult.hash}
-                      </Link>
-                    </span>
-                  </li>
+                  <>
+                    <li>
+                      <span>
+                        <Link to={`/transactionList/${searchResult.hash}`}>
+                          {searchResult.hash}
+                        </Link>
+                      </span>
+                    </li>
+                    <li>
+                      <span>
+                        <Link to={`/transactionList/${searchResult.hash}`}>
+                          {searchResult.from}
+                        </Link>
+                      </span>
+                    </li>{" "}
+                    <li>
+                      <span>
+                        <Link to={`/transactionList/${searchResult.to}`}>
+                          {searchResult.to}
+                        </Link>
+                      </span>
+                    </li>{" "}
+                    <li>
+                      <span>
+                        <Link to={`/transactionList/${searchResult.value}`}>
+                          {searchResult.value != undefined
+                            ? searchResult.value
+                                .toString()
+                                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                            : 0}{" "}
+                          wei / {searchResult.value / Math.pow(10, 18)} Eth
+                        </Link>
+                      </span>
+                    </li>
+                  </>
                 ) : (
                   <div>검색에 오류가 있습니다.</div>
                 )}

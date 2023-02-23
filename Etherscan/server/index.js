@@ -19,7 +19,7 @@ app.use((req, res, next) => {
   else morgan("dev")(req, res, next);
 });
 
-app.use("/", express.static(path.join(__dirname, "web")));
+app.use("/", express.static(path.join(__dirname, "react")));
 
 app.use(express.json());
 

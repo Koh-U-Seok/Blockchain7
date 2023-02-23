@@ -6,7 +6,7 @@ module.exports = class Block extends Sequelize.Model {
     return super.init(
       {
         number: {
-          type: Sequelize.STRING(255),
+          type: Sequelize.INTEGER,
           unique: true,
           allowNull: false,
         },

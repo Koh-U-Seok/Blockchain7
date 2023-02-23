@@ -10,6 +10,7 @@ import AccountListContainer from "./components/AccountList/AccountListContainer"
 import AccountContainer from "./components/Account/AccountContainer";
 import TransactionListContainer from "./components/TransactionList/TransactionListContainer";
 import SearchResultContainer from "./components/SearchResult/SearchResultContainer";
+import TransactionContainer from "./components/Transaction/TransactionContainer";
 
 function App() {
   return (
@@ -39,6 +40,10 @@ function App() {
             <Route
               path="/TransactionList"
               element={<TransactionListContainer></TransactionListContainer>}
+            ></Route>
+            <Route
+              path="/TransactionList/:transactionHash"
+              element={<TransactionContainer></TransactionContainer>}
             ></Route>
             <Route
               path="/Search"

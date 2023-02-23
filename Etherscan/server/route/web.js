@@ -10,7 +10,7 @@ web3.eth.subscribe("newBlockHeaders", (error, result) => {
   if (!error) {
     db.Block.max("number")
       .then((max) => {
-        dBLatestBlockNumber = max == null ? 0 : max;
+        dBLatestBlockNumber = max == null ? -1 : max;
       })
       .then(() => {
         web3.eth
@@ -26,21 +26,12 @@ web3.eth.subscribe("newBlockHeaders", (error, result) => {
                   latestBlockNumber = data.number;
                 })
                 .then(() => {
-                  console.log("dBLatestBlockNumber : ", dBLatestBlockNumber);
-                  console.log("latestBlockNumber : ", latestBlockNumber);
                   for (
-                    let i = dBLatestBlockNumber;
+                    let i = dBLatestBlockNumber + 1;
                     i < latestBlockNumber + 1;
                     i++
                   ) {
                     web3.eth.getBlock(i).then(async (data) => {
-                      console.log("블록을 생성한다.");
-                      // for (let aaa = 0; aaa < Object.keys(data).length; aaa++) {
-                      //   console.log(
-                      //     Object.keys(data)[aaa],
-                      //     typeof Object.keys(data)[aaa]
-                      //   );
-                      // }
                       await db.Block.create({
                         difficulty: data.difficulty,
                         extraData: data.extraData,
@@ -62,15 +53,16 @@ web3.eth.subscribe("newBlockHeaders", (error, result) => {
                         transactionsRoot: data.transactionsRoot,
                         uncles: data.uncles,
                       });
-                      console.log("블록의 해시 : ", data.hash);
-                      if (
-                        (await web3.eth.getTransaction(data.hash[0])) != null
-                      ) {
-                        for (let j = 0; j < data.hash.length; j++) {
+
+                      for (let j = 0; j < data.transactions.length; j++) {
+                        if (
+                          (await web3.eth.getTransaction(
+                            data.transactions[j]
+                          )) != null
+                        ) {
                           await web3.eth
-                            .getTransaction(data.hash[j])
+                            .getTransaction(data.transactions[j])
                             .then(async (tx) => {
-                              console.log("들어가는 중");
                               await db.Transaction.create({
                                 blockHash: data.hash,
                                 blockNumber: data.number,
