@@ -19,7 +19,7 @@ async function init() {
   // console.log("instance : ", instance);
   console.log("instance.options.address : ", instance.options.address); // CA : 0x51021B9F42F809198FfcAF831fcB95c02F6fB112
 }
-init();
+// init();
 
 async function test() {
   const accounts = await client.web3.eth.getAccounts();
