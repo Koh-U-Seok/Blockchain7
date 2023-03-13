@@ -1,0 +1,9 @@
+{
+  "name": "second NFT",
+  "description": "second testing NFT with pinata",
+  "image": "QmQSCBVvP4Jt3Ci4fs74FgLfe2tdAPpFN27rVGBpxMfXwY",
+  "attributes": [
+    { "trait_type": "Rank", "value": 1 },
+    { "trait_type": "Type", "value": 1 }
+  ]
+}
