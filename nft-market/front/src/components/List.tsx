@@ -7,18 +7,25 @@ interface nftData {
   image: string;
 }
 
-export const List = () => {
+export const List = ({ account }: { account: string }) => {
   const [list, setList] = useState<Array<nftData>>([]);
   // API Server에서 리스트 받아서 출력하자
 
   useEffect(() => {
     // mount 될 때 서버에 목록 리스트를 요청했다.
     (async () => {
-      setList((await axios.get("http://localhost:8080/api/list")).data);
+      // console.log(
+      //   await axios.get(
+      //     "https://ipfs.io/ipfs/QmaJ9aqnqvsGrwAzpRNSiGZPZyM4w19UAZHYvQbbHeT9kV"
+      //   )
+      // );
+      setList(
+        (await axios.post("http://localhost:8080/api/list", { from: account }))
+          .data
+      );
       // 서버로부터 받아온 데이터를 state 배열 list에 넣었다.
     })();
-  }, []);
-
+  }, [account]);
   return (
     <ul>
       {list.map((item, idx) => (

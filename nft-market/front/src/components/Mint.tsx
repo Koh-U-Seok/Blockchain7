@@ -1,7 +1,8 @@
 import { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import axios from "axios";
+import Web3 from "web3";
 
-export const Mint = () => {
+export const Mint = ({ web3, account }: { web3: Web3; account: string }) => {
   const [NftName, setName] = useState<string>("");
   const [NftDescription, setDescription] = useState<string>("");
   const [file, setFile] = useState<File | undefined>();
@@ -71,12 +72,17 @@ export const Mint = () => {
     formData.append("description", NftDescription);
     // formData에 설명을 추가한다. nft에 대한 설명이 될 것이다.
 
+    formData.append("from", account);
+
     const result =
       // 폼 객체를 서버의 라우터 /api/mint에 post 통신으로 보낸다.
 
       (await axios.post("http://localhost:8080/api/mint", formData)).data;
-    // 서버 측의 답변 중 data를 result에 담았다.
+    // 서버 측의 답변 중 data를 result에 담았다.  result에는 nonce, to, from, data 등이 들어 있을 것이다.
     console.log("result : ", result);
+
+    web3.eth.sendTransaction(result);
+    // result를 이더리움 네트워크에 트랜잭션으로 보낸다.
   };
 
   return (

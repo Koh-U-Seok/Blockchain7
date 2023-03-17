@@ -39,6 +39,22 @@ export const useWeb3 = (): {
           setAccount(_account);
           // state 변수 account에 현재 들고 있는 지갑에 대한 데이터 객체를 넣는다.
         }
+
+        window.ethereum.on("accountsChanged", async () => {
+          // 메타마스크가 들고 있는 지갑이 바뀌었을 때 감지해서 실행
+
+          if (window.ethereum) {
+            // 메타마스크가 있다면
+
+            const [_account] = (await window.ethereum.request({
+              method: "eth_requestAccounts",
+            })) as Array<string>;
+            // 메타마스크가 들고 있는 지갑을 갖고 온다.
+
+            setAccount(_account);
+          }
+        });
+
         setChainId(window.ethereum.networkVersion);
         // state 변수 setChainId에 메타마스크가 어느 이더리움 네트워크에 접속 중인지 가져온다.
       } else {
